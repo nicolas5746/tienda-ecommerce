@@ -1,0 +1,46 @@
+@import '@assets/styles/colours'
+@import '@assets/styles/fonts'
+@import '@assets/styles/mixins.sass'
+
+.button
+    font-family: $poppins
+    font-size: 0.8rem
+    margin: 5% auto 2%
+
+.homeButton
+    background-color: $gainsboro
+    border: 0.1em solid $windows-blue
+    color: $windows-blue
+    font-family: $lato
+    font-size: 1rem
+    margin: 0 auto
+    &:link
+        color: $windows-blue
+    &:visited
+        color: $medium-blue
+    &:hover
+        background-color: $dark-white
+        color: $royal-blue
+    &:active
+        color: $blue-whale
+
+.button,
+.homeButton
+    @include text(center, middle)
+    cursor: pointer
+    display: block
+
+.button::first-letter,
+.homeButton::first-letter
+    text-transform: uppercase
+
+@media screen and (max-width: 599px)
+    .button
+        font-size: 0.6rem
+
+@media screen and (min-width: 600px) and (max-width: 850px)
+    .button
+        font-size: 0.8rem
+
+    .homeButton
+        font-size: 1rem

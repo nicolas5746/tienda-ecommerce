@@ -1,0 +1,44 @@
+@import '@assets/styles/colours'
+@import '@assets/styles/fonts'
+@import '@assets/styles/mixins.sass'
+
+.greeting
+    @include animation(greeting 3s linear infinite)
+    @include text(center, middle)
+    @include linearGradient((15deg, $purple 10%, $ferrari-red 33%, $crimson-red 45%, $maroon 66%, $purple-maroon 100%))
+    -moz-background-clip: text
+    -webkit-background-clip: text 
+    background-clip: text
+    background-color: $ferrari-red
+    background-size: 200% auto
+    border: 0.1em
+    border-radius: 0.5em
+    color: transparent
+    font-family: $poppins
+    font-size: 1.5rem
+    font-weight: 600
+    padding: 1%
+    text-shadow: 0.1em 0.3em 0.8em $night-blue
+
+.search
+    @include alignItems(center, center)
+    @include flex
+    @include justifyContent(center, center)
+    @include row
+    padding: 1%
+    & label
+        margin: 0 0.5%
+    & input
+        border-radius: 0.5em
+
+.mt-6
+    background-color: $gainsboro
+    padding: 3%
+
+@keyframes greeting
+    to
+        background-position: 200%
+
+@media screen and (max-width:850px)
+    .greeting
+        font-size: 1rem

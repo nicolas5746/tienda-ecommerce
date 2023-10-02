@@ -1,0 +1,132 @@
+@import './colours'
+@import './mixins.sass'
+
+*
+    -moz-box-sizing: border-box
+    -webkit-box-sizing: border-box
+    box-sizing: border-box
+    margin: 0
+    padding: 0
+
+html
+    -moz-osx-font-smoothing: grayscale
+    -moz-text-size-adjust: 100%
+    -ms-text-size-adjust: 100%
+    -webkit-font-smoothing: antialiased
+    -webkit-text-size-adjust: 100%
+    text-size-adjust: 100%
+
+body
+    background-color: $linen
+
+.card
+    background-color: $gainsboro
+
+.container
+    background-color: $linen
+    margin: 0 auto
+    padding: 8%
+
+.flex
+    @include justifyContent(space-around, justify)
+
+.model
+    color: $windows-blue
+    font-size: 1rem
+
+.navyHeader
+    color: $navy
+
+.outOfStock
+    white-space: normal
+
+.totalPrice
+    font-size: 1.2rem
+    font-weight: 700
+
+.brand,
+.card
+    padding: 3%
+
+.brand,
+.price
+    font-size: 1.5rem
+
+.category,
+.outOfStock
+    color: $red-blood
+
+.colour,
+.greyHeader
+    color: $roman-silver
+    &::first-letter
+        text-transform: uppercase
+
+.container,
+.mt-4
+    @include column
+
+.model,
+.price
+    font-weight: 600
+
+.brand,
+.category,
+.model
+    text-transform: capitalize
+
+.brand,
+.category,
+.totalPrice
+    white-space: nowrap
+
+.brand,
+.price,
+.totalPrice
+    color: $tomato-sauce-red
+
+.container,
+.flex,
+.mt-4
+    @include alignItems(center, center)
+    @include flex
+    @include justifyContent(center, center)
+
+.price,
+.outOfStock,
+.totalPrice
+    text-transform: uppercase
+
+.brand,
+.model,
+.outOfStock,
+.price,
+.totalPrice
+    padding: 1%
+
+.category,
+.colour,
+.greyHeader,
+.navyHeader,
+.outOfStock
+    font-size: 0.8rem
+
+.brand,
+.category,
+.greyHeader,
+.model,
+.outOfStock,
+.totalPrice
+    @include text(center, middle)
+
+@media screen and (max-width: 649px)
+    .container
+        padding: 25%
+
+@media screen and (min-width: 650px) and (max-width: 849px)
+    .container
+        padding: 12%
+
+@media screen and (min-width: 850px) and (max-width: 1200px)
+    .container
+        padding: 10%

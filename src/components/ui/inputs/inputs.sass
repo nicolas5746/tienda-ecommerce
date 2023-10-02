@@ -1,0 +1,36 @@
+@import '@assets/styles/colours'
+@import '@assets/styles/fonts'
+@import '@assets/styles/mixins.sass'
+
+.inputs
+    & h1
+        @include text(center, middle)
+        color: $tomato-sauce-red
+        font-family: $roboto
+        font-size: 1rem
+        font-weight: 500
+        margin: 0
+        padding: 5%
+        &::first-letter
+            text-transform: uppercase
+    & label
+        color: $roman-silver
+        font-family: $roboto
+        font-size: 0.8rem
+        padding: 0.5%
+    & input
+        @include text(left, middle)
+        &:focus::placeholder
+            background-color: $linen
+            color: transparent
+            margin: -5%
+            padding: 5%
+
+.formInputs
+    border: 0.1em solid $tomato-sauce-red
+    border-radius: 0.5em
+    color: $squid-ink
+    margin-bottom: 5%
+    padding: 2%
+    position: relative
+    width: 100%

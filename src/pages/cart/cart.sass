@@ -1,0 +1,26 @@
+@import '@assets/styles/colours'
+@import '@assets/styles/fonts'
+@import '@assets/styles/mixins.sass'
+
+.cart
+    padding-bottom: 10%
+
+.noItem
+    @include alignItems(center, center)
+    @include column
+    @include flex
+    @include justifyContent(center, center)
+    @include text(center, middle)
+    color: $ferrari-red
+    font-family: $lato
+    font-size: 1.5rem
+    font-weight: 600
+    padding-bottom: 5%
+    padding-top: 15%
+    & span
+        &::first-letter
+            text-transform: uppercase
+
+@media screen and (max-width: 850px)
+    .noItem
+        padding-top: 25%

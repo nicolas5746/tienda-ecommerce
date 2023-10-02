@@ -1,0 +1,33 @@
+@import '@assets/styles/colours'
+@import '@assets/styles/fonts'
+@import '@assets/styles/mixins.sass'
+
+.notFound
+    @include alignItems(center, center)
+    @include column
+    @include flex
+    @include justifyContent(center, center)
+    padding: 10%
+    & h1
+        font-size: 5rem
+        font-weight: 600
+    & p
+        font-size: 2rem
+        font-weight: 400
+        margin-bottom: 2%
+    & h1,
+    & p
+        @include text(center, middle)
+        color: $windows-blue
+        font-family: $lato
+        &::first-letter
+            text-transform: uppercase
+
+@media screen and (max-width: 850px)
+    .notFound
+        padding: 25%
+        & h1
+            font-size: 3rem
+        & p
+            font-size: 1rem
+            margin-bottom: 10%

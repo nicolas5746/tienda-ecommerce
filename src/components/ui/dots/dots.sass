@@ -1,0 +1,49 @@
+@import '@assets/styles/colours'
+@import '@assets/styles/mixins.sass'
+
+.dots
+    display: inline-block
+    height: 1em
+    left: 1em
+    position: relative
+    width: 1em
+    & div
+        -moz-animation-timing-function: cubic-bezier(0, 1, 1, 0)
+        -o-animation-timing-function: cubic-bezier(0, 1, 1, 0)
+        -webkit-animation-timing-function: cubic-bezier(0, 1, 1, 0)
+        animation-timing-function: cubic-bezier(0, 1, 1, 0)
+        background-color: $red
+        border-radius: 50%
+        height: 0.3em
+        position: absolute
+        top: 0.5em
+        width: 0.3em
+        &:nth-child(1)
+            @include dotsAnimation(dots1 0.6s infinite, -0.6em)
+        &:nth-child(2)
+            @include dotsAnimation(dots2 0.6s infinite, -0.6em)
+        &:nth-child(3)
+            @include dotsAnimation(dots2 0.6s infinite, 0.6em)
+        &:nth-child(4)
+            @include dotsAnimation(dots3 0.6s infinite, 0.6em)
+
+@keyframes dots1
+    0%
+        @include scale(0)
+
+    100%
+        @include scale(1)
+
+@keyframes dots2
+    0%
+        @include translate(0, 0)
+
+    100%
+        @include translate(1em, 0)
+
+@keyframes dots3
+    0%
+        @include scale(1)
+
+    100%
+        @include scale(0)

@@ -1,0 +1,16 @@
+@import '@assets/styles/mixins.sass'
+    
+.totalPriceContainer
+    @include row
+    position: relative
+    width: 100%
+
+.cartTotalPrice
+    @include column
+    margin: 1%
+    position: absolute
+
+.totalPriceContainer,
+.cartTotalPrice
+    @include flex
+    @include justifyContent(center, center)

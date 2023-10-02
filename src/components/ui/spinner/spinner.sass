@@ -1,0 +1,53 @@
+@import '@assets/styles/colours'
+@import '@assets/styles/mixins.sass'
+
+.overlay
+    @include alignItems(center, center)
+    @include flex
+    @include justifyContent(center, center)
+    background-color: $squid-ink
+    height: 100%
+    inset: 0
+    position: fixed
+    width: 100%
+
+.spinner
+    @include animation(spinner 0.5s infinite linear)
+    @include linearGradient((to right, $snow 10%, $squid-ink 42%))
+    -moz-transform: translateZ(0)
+    -ms-transform: translateZ(0)
+    -o-transform: translateZ(0)
+    -webkit-transform: translateZ(0)
+    border-radius: 50%
+    display: block
+    font-size: 0.6rem
+    height: 10em
+    margin: 0 auto
+    position: relative
+    transform: translateZ(0)
+    width: 10em
+    &::before
+        background: $transparent-grey
+        border-radius: 100% 0 0 0
+        content: ''
+        height: 50%
+        left: 0
+        position: absolute
+        top: 0
+        width: 50%
+    &::after
+        background: $squid-ink
+        border-radius: 50%
+        content: ''
+        height: 75%
+        inset: 0
+        margin: auto
+        position: absolute
+        width: 75%
+
+@keyframes spinner
+    0%
+        @include rotate(0deg)
+
+    100%
+        @include rotate(360deg)

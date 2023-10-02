@@ -1,0 +1,78 @@
+@mixin alignItems($propValue, $prefixValue)
+    -moz-box-align: $prefixValue
+    -ms-flex-align: $prefixValue
+    -webkit-box-align: $prefixValue
+    align-items: $propValue
+
+@mixin animation($value)
+    -moz-animation: $value
+    -o-animation: $value
+    -webkit-animation: $value
+    animation: $value
+
+@mixin column
+    -moz-box-direction: normal
+    -moz-box-orient: vertical
+    -ms-flex-direction: column
+    -webkit-box-direction: normal
+    -webkit-box-orient: vertical
+    flex-direction: column
+
+@mixin dotsAnimation($animation, $left)
+    -moz-animation: $animation
+    -o-animation: $animation
+    -webkit-animation: $animation
+    animation: $animation
+    left: $left
+
+@mixin flex
+    display: -moz-box
+    display: -ms-flexbox
+    display: -webkit-box
+    display: -webkit-flex
+    display: flex
+
+@mixin justifyContent($propValue, $prefixValue)
+    -moz-box-pack: $prefixValue
+    -ms-flex-pack: $prefixValue
+    -webkit-box-pack: $prefixValue
+    justify-content: $propValue
+
+@mixin linearGradient($values)
+    background-image: -moz-linear-gradient($values)
+    background-image: -o-linear-gradient($values)
+    background-image: -webkit-linear-gradient($values)
+    background-image: linear-gradient($values)
+
+@mixin rotate($value)
+    -moz-transform: rotate($value)
+    -ms-transform: rotate($value)
+    -o-transform: rotate($value)
+    -webkit-transform: rotate($value)
+    transform: rotate($value)
+
+@mixin row
+    -moz-box-direction: normal
+    -moz-box-orient: horizontal
+    -ms-flex-direction: row
+    -webkit-box-direction: normal
+    -webkit-box-orient: horizontal
+    flex-direction: row
+
+@mixin scale($value)
+    -moz-transform: scale($value)
+    -ms-transform: scale($value)
+    -o-transform: scale($value)
+    -webkit-transform: scale($value)
+    transform: scale($value)
+
+@mixin text($text, $vertical)
+    text-align: $text
+    vertical-align: $vertical
+
+@mixin translate($x, $y)
+    -moz-transform: translate($x, $y)
+    -ms-transform: translate($x, $y)
+    -o-transform: translate($x, $y)
+    -webkit-transform: translate($x, $y)
+    transform: translate($x, $y)

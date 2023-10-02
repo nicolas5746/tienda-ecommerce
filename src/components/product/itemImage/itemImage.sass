@@ -1,0 +1,32 @@
+@import '@assets/styles/colours'
+@import '@assets/styles/fonts'
+@import '@assets/styles/mixins.sass'
+
+.articleCode
+    @include alignItems(flex-end, end)
+    @include flex
+    @include justifyContent(center, center)
+    @include text(center, middle)
+    bottom: 2%
+    color: $roman-silver
+    font-family: $lato
+    font-size: 0.6rem
+    font-weight: 400
+    position: absolute
+    width: 100%
+
+@media screen and (max-width: 649px)
+    .articleCode
+        font-size: 0.2rem
+
+@media screen and (min-width: 650px) and (max-width: 849px)
+    .articleCode
+        font-size: 0.3rem
+
+@media screen and (min-width: 850px) and (max-width: 1200px)
+    .articleCode
+        font-size: 0.4rem
+
+@media screen and (max-width: 1024px)
+    .articleCode
+        bottom: 18%

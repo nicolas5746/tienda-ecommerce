@@ -1,0 +1,27 @@
+@import '@assets/styles/colours'
+@import '@assets/styles/fonts'
+@import '@assets/styles/mixins.sass'
+
+.footer
+    @include alignItems(center, center)
+    @include flex
+    @include justifyContent(center, center)
+    background-color: $transparent-grey
+    bottom: 0
+    height: 10%
+    left: 0
+    position: fixed
+    right: 0
+    width: 100%
+    z-index: 1
+    & p
+        @include text(center, middle)
+        color: $linen
+        font-family: $lato
+        font-size: 1rem
+        position: relative
+
+@media screen and (max-width: 599px)
+    .footer
+        & p
+            font-size: 0.8rem

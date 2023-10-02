@@ -1,0 +1,96 @@
+@import '@assets/styles/colours'
+@import '@assets/styles/mixins.sass'
+
+.cartTable
+    background-color: $transparent-grey
+    inset: 0
+    position: absolute
+    z-index: 2
+
+.tableContainer
+    background-color: $gainsboro
+    border-radius: 0.3em
+    height: 85%
+    margin: 2vh auto
+    padding: 2%
+    width: 95%
+
+.tableList
+    -ms-overflow-style: none
+    overflow-y: scroll
+    scrollbar-width: none
+    width: 80%
+    &::-webkit-scrollbar
+        display: none
+
+.tableCard
+    @include justifyContent(space-evenly, justify)
+    background-color: $gainsboro
+    border-radius: 0.3em
+    margin: 0 auto 8%
+    width: 100%
+
+.tableCardImage
+    @include scale(0.8)
+    width: 40%
+
+.pricePerItem
+    margin: 2%
+
+.tableCardInfo
+    margin-bottom: 5%
+    width: 50%
+
+.subTotalPrice
+    color: $tomato-sauce-red
+    font-size: 1rem
+    font-weight: 600
+    text-transform: uppercase
+
+.orderButtons
+    @include justifyContent(space-around, justify)
+
+.tableList,
+.orderButtons
+    @include column
+
+.cartTable,
+.tableList
+    padding: 0
+
+.cartTable,
+.tableCardInfo
+    @include justifyContent(center, center)
+
+.tableCard,
+.tableCardInfo,
+.orderButtons
+    @include alignItems(center, center)
+
+.cartTable,
+.tableList,
+.tableCardImage
+    margin: 0
+
+.cartTable,
+.tableContainer,
+.tableCard
+    @include row
+
+.tableContainer,
+.tableCardImage,
+.orderButtons
+    position: relative
+
+.subTotalPrice,
+.pricePerItem,
+.tableCardInfo
+    @include text(center, middle)
+
+.cartTable,
+.tableContainer,
+.tableList,
+.tableCard,
+.tableCardInfo,
+.orderButtons
+    @include flex

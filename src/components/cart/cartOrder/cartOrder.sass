@@ -1,0 +1,13 @@
+@import '@assets/styles/mixins.sass'
+
+.cartOrder
+    @include alignItems(center, center)
+    @include column
+    @include flex
+    @include justifyContent(center, center)
+    position: relative
+    width: 100%
+
+@media screen and (max-width: 1024px)
+    .cartOrder
+        @include scale(0.9)

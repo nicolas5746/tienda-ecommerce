@@ -1,0 +1,75 @@
+@import '@assets/styles/colours'
+@import '@assets/styles/fonts'
+@import '@assets/styles/mixins.sass'
+
+.checkout
+    @include row
+    background-color: $gainsboro
+    border-radius: 0.3rem
+    height: 95%
+    margin: 2vh auto
+    position: relative
+    width: 95%
+    z-index: 3
+
+.checkoutMessage
+    @include alignItems(center, center)
+    @include column
+    @include justifyContent(center, center)
+    margin: 0 auto
+    padding: 1%
+    position: relative
+    & img
+        height: 18vh
+        margin-bottom: 5%
+        width: 30vw
+    & h1
+        color: $windows-blue
+        font-family: $lato
+        font-size: 2rem
+        font-weight: 600
+    & p
+        color: $red
+        font-family: $lato
+        font-size: 1.2rem
+        font-weight: 500
+
+.copyIcon
+    color: $steelblue
+    padding: 1.2% 0.5%
+    &:hover
+        color: $neon-red
+        cursor: pointer
+        +.copy,
+        +.copied
+            visibility: visible
+
+.copied,
+.copy
+    background-color: $transparent-black
+    border: 0.05em solid $grey
+    border-radius: 1em
+    color: $azure
+    font-family: $roboto
+    font-size: 0.6rem
+    margin-left: 0.5%
+    padding: 1.5%
+    position: absolute
+    visibility: hidden
+    white-space: nowrap
+
+.checkout,
+.checkoutMessage
+    @include flex
+
+.checkoutMessage,
+.copied,
+.copy
+    @include text(center, middle)
+
+.checkoutMessage h1,
+.checkoutMessage p,
+.copied,
+.copy
+    &::first-letter
+        text-transform: uppercase

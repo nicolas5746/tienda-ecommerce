@@ -1,0 +1,15 @@
+@import '@assets/styles/mixins.sass'
+
+.payment-line-1,
+.payment-line-2
+    @include alignItems(center, center)
+    @include flex
+    @include justifyContent(space-around, justify)
+    width: 100%
+    & li
+        padding: 2%
+
+@media screen and (max-width: 799px)
+    .payment-line-1,
+    .payment-line-2
+        @include scale(0.5)
