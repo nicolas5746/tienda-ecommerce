@@ -13,14 +13,14 @@ const Navbar = () => {
     }
 
     const categories = [
-        { category: `dama` },
-        { category: `caballero` },
-        { category: `unisex` },
-        { category: `niños` },
-        { category: `accesorios` }
+        { category: 'dama' },
+        { category: 'caballero' },
+        { category: 'unisex' },
+        { category: 'niños' },
+        { category: 'accesorios' }
     ];
 
-    let logo = `https://i.postimg.cc/Jh4Q7W6r/logo.png`;
+    let logo = 'https://i.postimg.cc/Jh4Q7W6r/logo.png';
 
     return (
         <header className='header'>
@@ -45,36 +45,36 @@ const Navbar = () => {
                                 </div>
                                 <img
                                     className='logo'
-                                    alt={`Tienda Americana`}
+                                    alt={'Tienda Americana'}
                                     src={logo}
                                     style={{ marginRight: '2%' }}
-                                    title={`Tienda Americana`}
+                                    title={'Tienda Americana'}
                                 />
                                 <div
                                     className='flex flex-1 items-center justify-center sm:items-stretch sm:justify-start'
                                     onClick={() => scrollToTop()}
                                 >
                                     <Link
-                                        to={`/`}
+                                        to={'/'}
                                         className='flex flex-shrink-0 items-center'
                                         aria-label='home'
-                                        title={`Tienda Americana`}
+                                        title={'Tienda Americana'}
                                     >
-                                        <h1 className='pageTitle'>{`Tienda Americana`}</h1>
+                                        <h1 className='pageTitle'>{'Tienda Americana'}</h1>
                                     </Link>
                                     <div className='hidden sm:ml-10 sm:block'>
                                         <div className='flex space-x-4'>
                                             <Link
-                                                to={`/`}
+                                                to={'/'}
                                                 aria-label='home'
-                                                title={`Inicio`}
+                                                title={'Inicio'}
                                             >
                                                 <div className={classNames(false
                                                     ?
                                                     'bg-gray-900 text-white' : 'text-gray-300 hover:bg-red-700 hover:text-white',
                                                     'px-3 py-2 rounded-md text-sm font-medium')
                                                 }>
-                                                    {`Inicio`}
+                                                    {'Inicio'}
                                                 </div>
                                             </Link>
                                             {categories.map((item, index) => (
@@ -109,7 +109,7 @@ const Navbar = () => {
                         </div>
                         <Disclosure.Panel className='sm:hidden'>
                             <div className='space-y-1 px-2 pt-2 pb-3'>
-                                <Link to={`/`} aria-label='home'>
+                                <Link to={'/'} aria-label='home'>
                                     <div className={classNames(false
                                         ?
                                         'bg-gray-900 text-white'
@@ -117,8 +117,8 @@ const Navbar = () => {
                                         'text-gray-300 hover:bg-gray-700 hover:text-white',
                                         'block px-3 py-2 rounded-md text-base font-medium')
                                     }
-                                        title={`Inicio`}>
-                                        {`Inicio`}
+                                        title={'Inicio'}>
+                                        {'Inicio'}
                                     </div>
                                 </Link>
                                 {categories.map((item, index) => (

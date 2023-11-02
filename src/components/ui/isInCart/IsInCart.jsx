@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { CartContext } from '@contexts/Contexts';
+import { CartContext } from '@contexts/contexts';
 import { Button } from '@ui/buttons/Buttons';
 import { CheckedIcon } from '@ui/icons/Icons';
 import './isInCart.sass';
@@ -21,7 +21,7 @@ const IsInCart = ({ id, onClick }) => {
                         color='success'
                         fontSize='medium'
                         style={{ display: 'block', margin: '5% 0 0 35%' }}
-                        title={`Agregado`}
+                        title={'Agregado'}
                     />
                     <Link to='/cart' aria-label='cart'>
                         <Button
@@ -35,7 +35,7 @@ const IsInCart = ({ id, onClick }) => {
                                 padding: '3%',
                                 width: '120%'
                             }}
-                            text={`ir al carrito`}
+                            text={'ir al carrito'}
                             onMouseEnter={() => setHover(true)}
                             onMouseLeave={() => setHover(false)}
                         />
@@ -53,7 +53,7 @@ const IsInCart = ({ id, onClick }) => {
                         padding: '3%',
                         width: '120%'
                     }}
-                    text={`agregar al carrito`}
+                    text={'agregar al carrito'}
                     onClick={onClick}
                     onMouseEnter={() => setHover(true)}
                     onMouseLeave={() => setHover(false)}

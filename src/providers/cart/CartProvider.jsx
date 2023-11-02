@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { CartContext } from '@contexts/Contexts';
+import { CartContext } from '@contexts/contexts';
 
 const CartProvider = ({ children }) => {
     // JS Local Storage

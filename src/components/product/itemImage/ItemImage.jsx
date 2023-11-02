@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { CartContext, ItemContext } from '@contexts/Contexts';
+import { CartContext, ItemContext } from '@contexts/contexts';
 import { RemoveItemIcon } from '@ui/icons/Icons';
 import './itemImage.sass';
 
@@ -34,7 +34,7 @@ const ItemImage = ({ item, linkStyle, optionalText }) => {
                             position: 'absolute',
                             top: '2%',
                         }}
-                        title={`Eliminar`}
+                        title={'Eliminar'}
                     />
                     :
                     <></>

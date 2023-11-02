@@ -47,7 +47,6 @@ export const AddItem = ({ color, fontSize, onClick, style, title, variant }) => 
             style={style}
             variant={variant}
         >
-            {' '}
             <AddIcon fontSize={fontSize} titleAccess={title} />
         </Button>
     );
@@ -116,7 +115,7 @@ export const Close = ({
             onMouseEnter={onMouseEnter}
             onMouseLeave={onMouseLeave}
             style={style}
-            titleAccess={`Cerrar`}
+            titleAccess={'Cerrar'}
         />
     );
 }
@@ -145,7 +144,6 @@ export const RemoveItem = ({
             style={style}
             variant={variant}
         >
-            {' '}
             <RemoveIcon fontSize={fontSize} titleAccess={title} />
         </Button>
     );

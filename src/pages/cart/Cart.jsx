@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { CartContext } from '@contexts/Contexts';
+import { CartContext } from '@contexts/contexts';
 import { Button } from '@ui/buttons/Buttons';
 import { AddToCartIcon } from '@ui/icons/Icons';
 import CartTable from '@components/cart/cartTable/CartTable';
@@ -31,7 +31,7 @@ const Cart = () => {
                     </div>
                     <Link to={'/'} aria-label='home'>
                         <Button
-                            text={`continuar comprando`}
+                            text={'continuar comprando'}
                             style={{
                                 color: hover ? '#357ec7' : '#dcdcdc',
                                 backgroundColor: hover ? '#dcdcdc' : '#357ec7',
@@ -46,7 +46,7 @@ const Cart = () => {
                     </Link>
                 </>
                 :
-                <CartTable items={cart} currency={`usd`} />
+                <CartTable items={cart} currency={'usd'} />
             }
         </div>
     );

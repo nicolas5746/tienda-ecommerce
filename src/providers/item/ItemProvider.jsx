@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import * as firestore from 'firebase/firestore';
 import { Link } from 'react-router-dom';
-import { database } from '@middlewares/firebase/firebaseConfig';
-import { ItemContext } from '@contexts/Contexts';
+import { ItemContext } from '@contexts/contexts';
+import { database } from '@services/firebase/index';
 
 const ItemProvider = ({ children }) => {
     // Hooks

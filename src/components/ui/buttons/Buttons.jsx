@@ -39,7 +39,7 @@ Button.propTypes = {
 export const HomeButton = ({ style, text }) => {
 
     return (
-        <Link to={`/`} aria-label='home'>
+        <Link to={'/'} aria-label='home'>
             <div
                 className='homeButton'
                 aria-label='home-button'

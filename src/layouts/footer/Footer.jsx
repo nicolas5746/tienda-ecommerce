@@ -2,8 +2,8 @@ import './footer.sass';
 
 const Footer = () => {
 
-    let copyright = [`Nicolás Batista Piñeyro`, 2023];
-    let link = `https://nicolasbatista.netlify.app/`;
+    let copyright = ['Nicolás Batista Piñeyro', 2023];
+    let link = 'https://nicolasbatista.netlify.app/';
 
     return (
         <footer className='footer'>

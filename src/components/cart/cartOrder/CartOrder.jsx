@@ -1,5 +1,5 @@
 import React from 'react';
-import { CartContext } from '@contexts/Contexts';
+import { CartContext } from '@contexts/contexts';
 import { Button } from '@ui/buttons/Buttons';
 import CartForm from '@components/cart/cartForm/CartForm';
 import './cartOrder.sass';
@@ -37,7 +37,7 @@ const CartOrder = () => {
                             width: '105%',
                             whiteSpace: 'nowrap'
                         }}
-                        text={`confirmar compra`}
+                        text={'confirmar compra'}
                     />
                     <Button
                         onClick={() => handleClearCart()}
@@ -52,7 +52,7 @@ const CartOrder = () => {
                             width: '105%',
                             whiteSpace: 'nowrap'
                         }}
-                        text={`vaciar carrito`}
+                        text={'vaciar carrito'}
                     />
                 </div>
             }

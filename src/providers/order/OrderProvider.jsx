@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import * as firestore from 'firebase/firestore';
-import { database } from '@middlewares/firebase/firebaseConfig';
-import { OrderContext } from '@contexts/Contexts';
+import { OrderContext } from '@contexts/contexts';
+import { database } from '@services/firebase/index';
 
 const OrderProvider = ({ children }) => {
     // Hooks

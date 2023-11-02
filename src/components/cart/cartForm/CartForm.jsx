@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
-import { CartContext, OrderContext } from '@contexts/Contexts';
+import { CartContext, OrderContext } from '@contexts/contexts';
 import { Button } from '@ui/buttons/Buttons';
 import { SubmitButton } from '@ui/buttons/Buttons';
 import { Close } from '@ui/icons/Icons';
@@ -104,8 +104,8 @@ const CartForm = ({ closeForm }) => {
                                                 width: '100%',
                                                 whiteSpace: 'nowrap'
                                             }}
-                                            text={`enviar`}
-                                            title={`Enviar`}
+                                            text={'enviar'}
+                                            title={'Enviar'}
                                         />
                                         <Button
                                             onClick={closeForm}
@@ -124,8 +124,8 @@ const CartForm = ({ closeForm }) => {
                                                 textTransform: 'uppercase',
                                                 width: '100%'
                                             }}
-                                            text={`cancelar`}
-                                            title={`Cancelar`}
+                                            text={'cancelar'}
+                                            title={'Cancelar'}
                                         />
                                     </div>
                                 </form>

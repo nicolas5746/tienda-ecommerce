@@ -14,7 +14,7 @@ const NotFound = () => {
                     padding: '3%',
                     width: '120%'
                 }}
-                text={`volver`}
+                text={'volver'}
             />
         </div>
     );

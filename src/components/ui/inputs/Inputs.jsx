@@ -19,7 +19,7 @@ export const FormInputs = ({
                 pattern='([a-zA-ZÀ-ž\s]+){2,}'
                 placeholder='Ingresa tu nombre'
                 required
-                title={`Ingresa sólo valores alfabéticos. \n Ejemplo: Juan`}
+                title={'Ingresa sólo valores alfabéticos. Ejemplo: Juan'}
                 type='text'
                 value={firstNameValue}
             />
@@ -30,7 +30,7 @@ export const FormInputs = ({
                 pattern='([a-zA-ZÀ-ž\s]+){2,}'
                 placeholder='Ingresa tu apellido'
                 required
-                title={`Ingresa sólo valores alfabéticos. \n Ejemplo: Pérez`}
+                title={'Ingresa sólo valores alfabéticos. Ejemplo: Pérez'}
                 type='text'
                 value={lastNameValue}
             />
@@ -41,7 +41,7 @@ export const FormInputs = ({
                 pattern='([0-9]+){6,}'
                 placeholder='Ingresa tu teléfono'
                 required
-                title={`Ingresa sólo valores numéricos. \n Ejemplo: 123456`}
+                title={'Ingresa sólo valores numéricos. Ejemplo: 123456'}
                 type='tel'
                 value={phoneValue}
             />
@@ -51,7 +51,7 @@ export const FormInputs = ({
                 onChange={onChange}
                 placeholder='Ingresa tu e-mail'
                 required
-                title={`Ingresa una dirección de correo electrónico válida. \n Ejemplo: nombre@mail.com`}
+                title={'Ingresa una dirección de correo electrónico válida. Ejemplo: nombre@mail.com'}
                 type='email'
                 value={emailValue}
             />

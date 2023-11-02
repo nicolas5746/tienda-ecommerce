@@ -19,9 +19,9 @@ const Checkout = ({ orderId, resetCart }) => {
             <div className='checkout'>
                 <div className='checkoutMessage'>
                     <img
-                        alt={`Tienda Americana`}
+                        alt={'Tienda Americana'}
                         src={logo}
-                        title={`Tienda Americana`}
+                        title={'Tienda Americana'}
                     />
                     <h1>{`gracias por tu compra!`}</h1>
                     {orderId.length > 0
@@ -57,8 +57,8 @@ const Checkout = ({ orderId, resetCart }) => {
                                         width: '120%',
                                         whiteSpace: 'nowrap'
                                     }}
-                                    text={`ir al inicio`}
-                                    title={`Ir al inicio`}
+                                    text={'ir al inicio'}
+                                    title={'Ir al inicio'}
                                 />
                             </Link>
                         </>

@@ -1,7 +1,7 @@
 import React from 'react';
 import Badge from '@mui/material/Badge';
 import { Link } from 'react-router-dom';
-import { CartContext } from '@contexts/Contexts';
+import { CartContext } from '@contexts/contexts';
 import { CartIcon } from '@ui/icons/Icons';
 import './widget.sass';
 
@@ -13,7 +13,7 @@ const Widget = () => {
 
     return (
         <div className='widget'>
-            <Link to={`/cart`} aria-label='cart'>
+            <Link to={'/cart'} aria-label='cart'>
                 {cartSize < 1 ?
                     <CartIcon
                         onMouseEnter={() => setHover(true)}

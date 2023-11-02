@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { CartContext, ItemContext } from '@contexts/Contexts';
+import { CartContext, ItemContext } from '@contexts/contexts';
 import ItemImage from '@components/product/itemImage/ItemImage';
 import IsInCart from '@ui/isInCart/IsInCart';
 
@@ -16,7 +16,7 @@ const Item = ({ item }) => {
         >
             <ItemImage
                 item={item}
-                optionalText={``}
+                optionalText={''}
             />
             <div className='mt-4 flex justify-between'>
                 <h2 className='brand'>{item.brand}</h2>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { CartContext, ItemContext } from '@contexts/Contexts';
+import { CartContext, ItemContext } from '@contexts/contexts';
 import ItemImage from '@components/product/itemImage/ItemImage';
 import IsInCart from '@ui/isInCart/IsInCart';
 import Spacer from '@ui/spacer/Spacer';

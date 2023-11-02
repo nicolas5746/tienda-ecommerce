@@ -1,5 +1,5 @@
 import React from 'react';
-import { ItemContext } from '@contexts/Contexts';
+import { ItemContext } from '@contexts/contexts';
 import ItemDetail from '@components/product/itemDetail/ItemDetail';
 import Spinner from '@ui/spinner/Spinner';
 import scrollToTop from '@utils/scrollToTop';

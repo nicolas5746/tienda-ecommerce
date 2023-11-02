@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link, useNavigate } from 'react-router-dom';
-import { CartContext, ItemContext } from '@contexts/Contexts';
+import { CartContext, ItemContext } from '@contexts/contexts';
 import { Close } from '@ui/icons/Icons';
 import CartOrder from '@components/cart/cartOrder/CartOrder';
 import ItemImage from '@components/product/itemImage/ItemImage';
