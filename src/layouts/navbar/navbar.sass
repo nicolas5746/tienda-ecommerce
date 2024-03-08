@@ -24,7 +24,7 @@
             @include scale(1.05)
             color: $gainsboro
 
-.pageTitle
+.page-title
     @include text(center, middle)
     color: $crimson
     font-family: $bungee-inline
@@ -38,19 +38,17 @@
 .space-y-1
     text-transform: capitalize
 
-@media screen and (max-width:991px)
+@media (width < 992px)
     .bg-gray-800
         border-radius: 0 0 2.5em 2.5em
 
-    .logo
-        display: none
-
-    .pageTitle
+    .page-title
         font-size: 0.5rem
 
-@media screen and (min-width:992px) and (max-width:1024px)
+@media (width < 1024px)
     .logo
         display: none
 
-    .pageTitle
+@media (992px <= width < 1024px)
+    .page-title
         font-size: 0.9rem

@@ -5,8 +5,8 @@ import './totalPrice.sass';
 const TotalPrice = ({ style, totalPrice }) => {
 
     return (
-        <div className='totalPriceContainer'>
-            <div className='cartTotalPrice' style={style}>
+        <div className='total-price-container'>
+            <div className='cart-total-price' style={style}>
                 <p
                     style={{
                         fontWeight: '500',
@@ -17,7 +17,7 @@ const TotalPrice = ({ style, totalPrice }) => {
                     }}
                 >
                     {`precio total: `}
-                    <span className='totalPrice'>{`usd ${totalPrice}`}</span>
+                    <span className='total-price'>{`usd ${totalPrice}`}</span>
                 </p>
                 <Payment />
             </div>

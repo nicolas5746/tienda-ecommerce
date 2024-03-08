@@ -13,7 +13,7 @@ export const FormInputs = ({
         <div className='inputs'>
             <h1>{`completa tus datos`}</h1>
             <input
-                className='formInputs'
+                className='form-inputs'
                 name='firstName'
                 onChange={onChange}
                 pattern='([a-zA-ZÀ-ž\s]+){2,}'
@@ -24,7 +24,7 @@ export const FormInputs = ({
                 value={firstNameValue}
             />
             <input
-                className='formInputs'
+                className='form-inputs'
                 name='lastName'
                 onChange={onChange}
                 pattern='([a-zA-ZÀ-ž\s]+){2,}'
@@ -35,18 +35,19 @@ export const FormInputs = ({
                 value={lastNameValue}
             />
             <input
-                className='formInputs'
+                className='form-inputs'
                 name='phone'
                 onChange={onChange}
-                pattern='([0-9]+){6,}'
+                pattern='^[+]?[0123456789]\d{8,20}$'
                 placeholder='Ingresa tu teléfono'
                 required
-                title={'Ingresa sólo valores numéricos. Ejemplo: 123456'}
+                title={'Ingresa sólo valores numéricos. Sin espacios ni guiones.'}
                 type='tel'
                 value={phoneValue}
             />
             <input
-                className='formInputs'
+                className='form-inputs'
+                maxLength={80}
                 name='email'
                 onChange={onChange}
                 placeholder='Ingresa tu e-mail'

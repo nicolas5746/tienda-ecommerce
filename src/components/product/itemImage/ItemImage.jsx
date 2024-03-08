@@ -18,7 +18,7 @@ const ItemImage = ({ item, linkStyle, optionalText }) => {
             <>
                 <Link to={`/product/${item.id}`} aria-label='item-id' style={linkStyle}>
                     {getItemImage(item)}
-                    <span className='articleCode'>
+                    <span className='article-code'>
                         {optionalText.charAt(0).toUpperCase() + optionalText.slice(1).toLowerCase()}
                     </span>
                 </Link>

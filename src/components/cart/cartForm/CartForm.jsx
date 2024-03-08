@@ -11,7 +11,7 @@ import TotalPrice from '@ui/totalPrice/TotalPrice';
 import './cartForm.sass';
 
 const CartForm = ({ closeForm }) => {
-    // Hooks
+    // States
     const [check, setCheck] = React.useState(false);
     const [hover1, setHover1] = React.useState(false);
     const [hover2, setHover2] = React.useState(false);
@@ -46,8 +46,8 @@ const CartForm = ({ closeForm }) => {
     }
 
     return (
-        <div className='cartForm'>
-            <div className='cartFormContainer'>
+        <div className='cart-form'>
+            <div className='cart-form-container'>
                 {check
                     ?
                     <Checkout
@@ -68,7 +68,7 @@ const CartForm = ({ closeForm }) => {
                                 top: '0.5%'
                             }}
                         />
-                        <div className='formContainer'>
+                        <div className='form-container'>
                             <Box
                                 sx={{
                                     alignItems: 'center',
@@ -88,7 +88,7 @@ const CartForm = ({ closeForm }) => {
                                         onChange={handleOnChange}
                                         phoneValue={form.phone}
                                     />
-                                    <div className='formButtons'>
+                                    <div className='form-buttons'>
                                         <SubmitButton
                                             onMouseEnter={() => setHover2(true)}
                                             onMouseLeave={() => setHover2(false)}

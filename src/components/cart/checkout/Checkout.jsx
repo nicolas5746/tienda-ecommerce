@@ -2,22 +2,22 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Button } from '@ui/buttons/Buttons';
+import { copyOnClick } from '@utils/utils';
 import ContentCopyOutlinedIcon from '@mui/icons-material/ContentCopyOutlined';
 import Dots from '@ui/dots/Dots';
-import copyOnClick from '@utils/copyOnClick';
 import './checkout.sass';
 
 const Checkout = ({ orderId, resetCart }) => {
-    // Hooks
+    // States
     const [hover, setHover] = React.useState(false);
     const [isCopied, setIsCopied] = React.useState(false);
     // Path to logo img
     let logo = `https://i.postimg.cc/Jh4Q7W6r/logo.png`;
 
     return (
-        <div className='cartForm'>
+        <div className='cart-form'>
             <div className='checkout'>
-                <div className='checkoutMessage'>
+                <div className='checkout-message'>
                     <img
                         alt={'Tienda Americana'}
                         src={logo}
@@ -30,7 +30,7 @@ const Checkout = ({ orderId, resetCart }) => {
                             <p>
                                 {`tu número de pedido es: ${orderId}`}
                                 <ContentCopyOutlinedIcon
-                                    className='copyIcon'
+                                    className='copy-icon'
                                     onClick={() => copyOnClick(orderId, setIsCopied)}
                                 />
                                 {isCopied

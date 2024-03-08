@@ -5,7 +5,7 @@ import { CartContext } from '@contexts/contexts';
 const CartProvider = ({ children }) => {
     // JS Local Storage
     const lsCart = JSON.parse(window.localStorage.getItem('cart'));
-    // Hooks
+    // States
     const [cart, setCart] = React.useState(lsCart || []);
     const [addedItem, setAddedItem] = React.useState(1);
     // Function to check if an item is already in cart
@@ -121,7 +121,7 @@ const CartProvider = ({ children }) => {
         ));
         return items;
     }
-    // Hooks
+
     React.useEffect(() => {
         window.localStorage.setItem('cart', JSON.stringify(cart));
     }, [cart]);

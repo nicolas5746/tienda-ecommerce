@@ -1,8 +1,8 @@
 import React from 'react';
 import { ItemContext } from '@contexts/contexts';
+import { scrollToTop } from '@utils/utils';
 import ItemList from '@components/home/itemList/ItemList';
 import Spinner from '@ui/spinner/Spinner';
-import scrollToTop from '@utils/scrollToTop';
 import './home.sass';
 
 const Home = () => {

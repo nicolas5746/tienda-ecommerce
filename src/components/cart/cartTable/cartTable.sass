@@ -1,13 +1,13 @@
 @import '@styles/colours'
 @import '@styles/mixins.sass'
 
-.cartTable
+.cart-table
     background-color: $transparent-grey
     inset: 0
     position: absolute
     z-index: 2
 
-.tableContainer
+.table-container
     background-color: $gainsboro
     border-radius: 0.3em
     height: 85%
@@ -15,7 +15,7 @@
     padding: 2%
     width: 95%
 
-.tableList
+.table-list
     -ms-overflow-style: none
     overflow-y: scroll
     scrollbar-width: none
@@ -23,74 +23,74 @@
     &::-webkit-scrollbar
         display: none
 
-.tableCard
+.table-card
     @include justifyContent(space-evenly, justify)
     background-color: $gainsboro
     border-radius: 0.3em
     margin: 0 auto 8%
     width: 100%
 
-.tableCardImage
+.table-card-image
     @include scale(0.8)
     width: 40%
 
-.pricePerItem
+.price-per-item
     margin: 2%
 
-.tableCardInfo
+.table-card-info
     margin-bottom: 5%
     width: 50%
 
-.subTotalPrice
+.sub-total-price
     color: $tomato-sauce-red
     font-size: 1rem
     font-weight: 600
     text-transform: uppercase
 
-.orderButtons
+.order-buttons
     @include justifyContent(space-around, justify)
 
-.tableList,
-.orderButtons
+.table-list,
+.order-buttons
     @include column
 
-.cartTable,
-.tableList
+.cart-table,
+.table-list
     padding: 0
 
-.cartTable,
-.tableCardInfo
+.cart-table,
+.table-card-info
     @include justifyContent(center, center)
 
-.tableCard,
-.tableCardInfo,
-.orderButtons
+.table-card,
+.table-card-info,
+.order-buttons
     @include alignItems(center, center)
 
-.cartTable,
-.tableList,
-.tableCardImage
+.cart-table,
+.table-list,
+.table-card-image
     margin: 0
 
-.cartTable,
-.tableContainer,
-.tableCard
+.cart-table,
+.table-container,
+.table-card
     @include row
 
-.tableContainer,
-.tableCardImage,
-.orderButtons
+.table-container,
+.table-card-image,
+.order-buttons
     position: relative
 
-.subTotalPrice,
-.pricePerItem,
-.tableCardInfo
+.sub-total-price,
+.price-per-item,
+.table-card-info
     @include text(center, middle)
 
-.cartTable,
-.tableContainer,
-.tableList,
-.tableCard,
-.tableCardInfo,
-.orderButtons
+.cart-table,
+.table-container,
+.table-list,
+.table-card,
+.table-card-info,
+.order-buttons
     @include flex

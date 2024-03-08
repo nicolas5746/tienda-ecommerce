@@ -4,7 +4,7 @@ import './notFound.sass';
 const NotFound = () => {
 
     return (
-        <div className='notFound'>
+        <div className='not-found'>
             <p>{`error`}</p>
             <h1>{`404`}</h1>
             <p>{`página no encontrada`}</p>

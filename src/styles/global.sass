@@ -22,6 +22,9 @@ body
 .card
     background-color: $gainsboro
 
+.category
+    color: $red-blood
+
 .container
     background-color: $linen
     margin: 0 auto
@@ -34,13 +37,14 @@ body
     color: $windows-blue
     font-size: 1rem
 
-.navyHeader
+.navy-header
     color: $navy
 
-.outOfStock
+.out-of-stock
+    margin: 5%
     white-space: normal
 
-.totalPrice
+.total-price
     font-size: 1.2rem
     font-weight: 700
 
@@ -52,12 +56,8 @@ body
 .price
     font-size: 1.5rem
 
-.category,
-.outOfStock
-    color: $red-blood
-
 .colour,
-.greyHeader
+.grey-header
     color: $roman-silver
     &::first-letter
         text-transform: uppercase
@@ -66,10 +66,6 @@ body
 .mt-4
     @include column
 
-.model,
-.price
-    font-weight: 600
-
 .brand,
 .category,
 .model
@@ -77,13 +73,8 @@ body
 
 .brand,
 .category,
-.totalPrice
+.total-price
     white-space: nowrap
-
-.brand,
-.price,
-.totalPrice
-    color: $tomato-sauce-red
 
 .container,
 .flex,
@@ -92,41 +83,52 @@ body
     @include flex
     @include justifyContent(center, center)
 
+.model,
+.out-of-stock,
+.price
+    font-weight: 600
+
 .price,
-.outOfStock,
-.totalPrice
+.out-of-stock,
+.total-price
     text-transform: uppercase
 
 .brand,
-.model,
-.outOfStock,
+.out-of-stock,
 .price,
-.totalPrice
+.total-price
+    color: $tomato-sauce-red
+
+.brand,
+.model,
+.out-of-stock,
+.price,
+.total-price
     padding: 1%
 
 .category,
 .colour,
-.greyHeader,
-.navyHeader,
-.outOfStock
+.grey-header,
+.navy-header,
+.out-of-stock
     font-size: 0.8rem
 
 .brand,
 .category,
-.greyHeader,
+.grey-header,
 .model,
-.outOfStock,
-.totalPrice
+.out-of-stock,
+.total-price
     @include text(center, middle)
 
-@media screen and (max-width: 649px)
+@media (width < 650px)
     .container
         padding: 25%
 
-@media screen and (min-width: 650px) and (max-width: 849px)
+@media (650px <= width < 850px)
     .container
         padding: 12%
 
-@media screen and (min-width: 850px) and (max-width: 1200px)
+@media (850px <= width <= 1200px)
     .container
         padding: 10%

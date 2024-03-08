@@ -33,15 +33,15 @@ const ItemDetail = () => {
                                 <>
                                     {getItemColour(item)}
                                     <Spacer value={1} />
-                                    <p className='greyHeader' style={{ fontWeight: '600' }}>
+                                    <p className='grey-header' style={{ fontWeight: '600' }}>
                                         {`hay stock disponible!`}
                                     </p>
                                 </>
                                 :
-                                <p className='outOfStock'>{`lo sentimos, no hay stock disponible!`}</p>
+                                <p className='out-of-stock'>{`lo sentimos, no hay stock disponible!`}</p>
                             }
                             <Spacer value={1.5} />
-                            <p className='greyHeader'>{`precio:`}</p>
+                            <p className='grey-header'>{`precio:`}</p>
                             <p className='price'>{`usd ${item.price_usd}`}</p>
                             <IsInCart id={item.id} onClick={() => handleAddToCart(item)} />
                         </div>

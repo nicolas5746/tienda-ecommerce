@@ -3,23 +3,23 @@ import { Link } from 'react-router-dom';
 import { CartContext } from '@contexts/contexts';
 import { Button } from '@ui/buttons/Buttons';
 import { AddToCartIcon } from '@ui/icons/Icons';
+import { scrollToTop } from '@utils/utils';
 import CartTable from '@components/cart/cartTable/CartTable';
-import scrollToTop from '@utils/scrollToTop';
 import './cart.sass';
 
 const Cart = () => {
-    // Hooks
+    // States
     const [hover, setHover] = React.useState(false);
     // Context
     const { cart, cartSize } = React.useContext(CartContext);
-    
+
     return (
         <div className='cart'>
             {scrollToTop()}
             {cartSize < 1
                 ?
                 <>
-                    <div className='noItem'>
+                    <div className='no-item'>
                         <AddToCartIcon
                             badgeColor={'error'}
                             cartColor={'primary'}

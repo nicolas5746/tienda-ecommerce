@@ -6,7 +6,7 @@ import { CartIcon } from '@ui/icons/Icons';
 import './widget.sass';
 
 const Widget = () => {
-    // Hooks
+    // States
     const [hover, setHover] = React.useState(false);
     // Context
     const { cartSize } = React.useContext(CartContext);

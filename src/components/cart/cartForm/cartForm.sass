@@ -1,7 +1,7 @@
 @import '@styles/colours'
 @import '@styles/mixins.sass'
 
-.cartForm
+.cart-form
     background-color: $transparent-dark-grey
     height: 100%
     inset: 0
@@ -9,7 +9,7 @@
     width: 100%
     z-index: 2
 
-.cartFormContainer
+.cart-form-container
     background-color: $gainsboro
     border-radius: 0.5em
     height: 83%
@@ -17,7 +17,7 @@
     width: 94%
     z-index: 3
 
-.formContainer
+.form-container
     @include alignItems(baseline, baseline)
     margin: 0.5% 5%
     width: 80%
@@ -26,27 +26,27 @@
     @include column
     width: 100%
 
-.formButtons
+.form-buttons
     margin: 1% auto
     white-space: nowrap
 
-.cartFormContainer,
-.formContainer
+.cart-form-container,
+.form-container
     @include justifyContent(space-around, justify)
 
 .form,
-.formButtons
+.form-buttons
     @include alignItems(center, center)
     @include justifyContent(center, center)
 
-.cartFormContainer,
-.formContainer,
-.formButtons
+.cart-form-container,
+.form-container,
+.form-buttons
     @include row
     position: relative
 
-.cartFormContainer,
-.formContainer,
+.cart-form-container,
+.form-container,
 .form,
-.formButtons
+.form-buttons
     @include flex

@@ -5,7 +5,7 @@
 .cart
     padding-bottom: 10%
 
-.noItem
+.no-item
     @include alignItems(center, center)
     @include column
     @include flex
@@ -21,6 +21,6 @@
         &::first-letter
             text-transform: uppercase
 
-@media screen and (max-width: 850px)
-    .noItem
+@media (width <= 850px)
+    .no-item
         padding-top: 25%

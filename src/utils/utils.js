@@ -1,5 +1,5 @@
 // Function to copy text on right click
-const copyOnClick = (text, state) => {
+export const copyOnClick = (text, state) => {
     if ('clipboard' in navigator) {
         return navigator.clipboard.writeText(text)
             .then(() => {
@@ -13,5 +13,11 @@ const copyOnClick = (text, state) => {
             });
     }
 }
-
-export default copyOnClick;
+// Function to scroll to the browser window top
+export const scrollToTop = () => {
+    window.scroll({
+        behavior: 'smooth',
+        left: 0,
+        top: 0
+    });
+}

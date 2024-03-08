@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import * as firestore from 'firebase/firestore';
 import { Link } from 'react-router-dom';
 import { ItemContext } from '@contexts/contexts';
-import { database } from '@services/firebase/index';
+import { database } from '@lib/firebase/index';
 
 const ItemProvider = ({ children }) => {
-    // Hooks
+    // States
     const [items, setItems] = React.useState([]);
     // Function to get items from database
     const getItems = async () => {
@@ -32,7 +32,7 @@ const ItemProvider = ({ children }) => {
     const getItemCategory = (item) => {
 
         return (
-            <p className='greyHeader'>{`categoría: `}
+            <p className='grey-header'>{`categoría: `}
                 <Link to={`/category/${item.category}`} aria-label='category'>
                     <span className='category'>{item.category}</span>
                 </Link>
@@ -71,7 +71,7 @@ const ItemProvider = ({ children }) => {
             <p className='model' style={style}>{item.model}</p>
         );
     }
-    // Hooks
+
     React.useEffect(() => {
         getItems();
     }, []);

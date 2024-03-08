@@ -2,7 +2,7 @@
 @import '@styles/fonts'
 @import '@styles/mixins.sass'
 
-.notFound
+.not-found
     @include alignItems(center, center)
     @include column
     @include flex
@@ -23,8 +23,8 @@
         &::first-letter
             text-transform: uppercase
 
-@media screen and (max-width: 850px)
-    .notFound
+@media (width <= 850px)
+    .not-found
         padding: 25%
         & h1
             font-size: 3rem

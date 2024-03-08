@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import * as firestore from 'firebase/firestore';
 import { OrderContext } from '@contexts/contexts';
-import { database } from '@services/firebase/index';
+import { database } from '@lib/firebase/index';
 
 const OrderProvider = ({ children }) => {
-    // Hooks
+    // States
     const [orderId, setOrderId] = React.useState([]);
     // Function to send order to database
     const handleSendOrder = async (form, addedItems, totalPrice) => {
@@ -21,7 +21,7 @@ const OrderProvider = ({ children }) => {
             total: totalPrice
         }
 
-        const randomIdNumber = `0000` + window.crypto.getRandomValues(new Uint32Array(1));
+        const randomIdNumber = '0000' + window.crypto.getRandomValues(new Uint32Array(1));
 
         await firestore.setDoc(firestore.doc(database, 'OrderCollection', randomIdNumber), order);
 

@@ -11,11 +11,10 @@ export default defineConfig({
       '@components': fileURLToPath(new URL('./src/components', import.meta.url)),
       '@contexts': fileURLToPath(new URL('./src/contexts', import.meta.url)),
       '@layouts': fileURLToPath(new URL('./src/layouts', import.meta.url)),
-      '@middlewares': fileURLToPath(new URL('./src/middlewares', import.meta.url)),
+      '@lib': fileURLToPath(new URL('./src/lib', import.meta.url)),
       '@pages': fileURLToPath(new URL('./src/pages', import.meta.url)),
       '@providers': fileURLToPath(new URL('./src/providers', import.meta.url)),
       '@routes': fileURLToPath(new URL('./src/routes', import.meta.url)),
-      '@services': fileURLToPath(new URL('./src/services', import.meta.url)),
       '@styles': fileURLToPath(new URL('./src/styles', import.meta.url)),
       '@ui': fileURLToPath(new URL('./src/components/ui', import.meta.url)),
       '@utils': fileURLToPath(new URL('./src/utils', import.meta.url))

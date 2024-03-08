@@ -11,7 +11,7 @@ import TotalPrice from '@ui/totalPrice/TotalPrice';
 import './cartTable.sass';
 
 const CartTable = ({ items, currency }) => {
-    // Hooks
+    // States
     const [hover, setHover] = React.useState(false);
     // Context
     const { handleSubTotalPrice, handleTotalPrice, handleIncreaseItem, handleDecreaseItem } = React.useContext(CartContext);
@@ -20,11 +20,11 @@ const CartTable = ({ items, currency }) => {
     const navigate = useNavigate();
 
     return (
-        <div className='cartTable'>
-            <div className='tableContainer'>
-                <div className='tableList'>
+        <div className='cart-table'>
+            <div className='table-container'>
+                <div className='table-list'>
                     {items.map((item, index) => (
-                        <div className='tableCard' key={index}>
+                        <div className='table-card' key={index}>
                             <Close
                                 color={hover ? 'error' : 'primary'}
                                 onClick={() => navigate(-1)}
@@ -37,19 +37,19 @@ const CartTable = ({ items, currency }) => {
                                     top: '0.5%'
                                 }}
                             />
-                            <div className='tableCardImage'>
+                            <div className='table-card-image'>
                                 <ItemImage
                                     item={item}
                                     optionalText={`código del artículo: ${item.id}`}
                                 />
-                                <div className='pricePerItem'>
-                                    <p className='greyHeader'>{`precio:`}</p>
-                                    <p className='navyHeader' style={{ fontWeight: '500', textTransform: 'uppercase' }}>
+                                <div className='price-per-item'>
+                                    <p className='grey-header'>{`precio:`}</p>
+                                    <p className='navy-header' style={{ fontWeight: '500', textTransform: 'uppercase' }}>
                                         {`${currency} ${item.priceUsd}`}
                                     </p>
                                 </div>
                             </div>
-                            <div className='tableCardInfo'>
+                            <div className='table-card-info'>
                                 <div className='mt-4 flex justify-between'>
                                     <Link to={`/product/${item.id}`} aria-label='item-id'>
                                         <h2 className='brand'>{item.brand}</h2>
@@ -60,8 +60,8 @@ const CartTable = ({ items, currency }) => {
                                         {getItemCategory(item)}{getItemColour(item)}
                                     </div>
                                     <Spacer value={1.5} />
-                                    <p className='greyHeader'>{`subtotal:`}</p>
-                                    <p className='subTotalPrice'>{`${currency} ${handleSubTotalPrice(item)}`}</p>
+                                    <p className='grey-header'>{`subtotal:`}</p>
+                                    <p className='sub-total-price'>{`${currency} ${handleSubTotalPrice(item)}`}</p>
                                     <Spacer value={5} />
                                     <Counter
                                         addItem={() => handleIncreaseItem(item.id)}
@@ -73,7 +73,7 @@ const CartTable = ({ items, currency }) => {
                         </div>))
                     }
                 </div>
-                <div className='orderButtons'>
+                <div className='order-buttons'>
                     <TotalPrice totalPrice={handleTotalPrice()} />
                     <CartOrder />
                 </div>

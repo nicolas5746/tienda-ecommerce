@@ -2,7 +2,7 @@
 @import '@styles/fonts'
 @import '@styles/mixins.sass'
 
-.articleCode
+.article-code
     @include alignItems(flex-end, end)
     @include flex
     @include justifyContent(center, center)
@@ -15,18 +15,18 @@
     position: absolute
     width: 100%
 
-@media screen and (max-width: 649px)
-    .articleCode
+@media (width < 650px)
+    .article-code
         font-size: 0.2rem
 
-@media screen and (min-width: 650px) and (max-width: 849px)
-    .articleCode
+@media (650px <= width < 850px)
+    .article-code
         font-size: 0.3rem
 
-@media screen and (min-width: 850px) and (max-width: 1200px)
-    .articleCode
+@media (850px <= width <= 1200px)
+    .article-code
         font-size: 0.4rem
 
-@media screen and (max-width: 1024px)
-    .articleCode
+@media (width <= 1024px)
+    .article-code
         bottom: 18%

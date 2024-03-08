@@ -5,7 +5,7 @@ import CartForm from '@components/cart/cartForm/CartForm';
 import './cartOrder.sass';
 
 const CartOrder = () => {
-    // Hooks
+    // States
     const [hover1, setHover1] = React.useState(false);
     const [hover2, setHover2] = React.useState(false);
     const [showForm, setShowForm] = React.useState(false);
@@ -23,7 +23,7 @@ const CartOrder = () => {
                 ?
                 <CartForm closeForm={() => handleCloseForm()} />
                 :
-                <div className='cartOrder'>
+                <div className='cart-order'>
                     <Button
                         onClick={() => setShowForm(!showForm)}
                         onMouseEnter={() => setHover1(true)}

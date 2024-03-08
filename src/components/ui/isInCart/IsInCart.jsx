@@ -7,13 +7,13 @@ import { CheckedIcon } from '@ui/icons/Icons';
 import './isInCart.sass';
 
 const IsInCart = ({ id, onClick }) => {
-    // Hooks
+    // States
     const [hover, setHover] = React.useState(false);
     // Context
     const { handleIsInCart } = React.useContext(CartContext);
 
     return (
-        <div className='isInCart'>
+        <div className='is-in-cart'>
             {handleIsInCart(id)
                 ?
                 <>

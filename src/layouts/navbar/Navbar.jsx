@@ -2,8 +2,8 @@
 import { Link } from 'react-router-dom';
 import { Disclosure, Menu } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
+import { scrollToTop } from '@utils/utils';
 import Widget from '@layouts/widget/Widget';
-import scrollToTop from '@utils/scrollToTop';
 import './navbar.sass';
 
 const Navbar = () => {
@@ -60,7 +60,7 @@ const Navbar = () => {
                                         aria-label='home'
                                         title={'Tienda Americana'}
                                     >
-                                        <h1 className='pageTitle'>{'Tienda Americana'}</h1>
+                                        <h1 className='page-title'>{'Tienda Americana'}</h1>
                                     </Link>
                                     <div className='hidden sm:ml-10 sm:block'>
                                         <div className='flex space-x-4'>
