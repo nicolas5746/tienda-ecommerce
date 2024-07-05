@@ -30,9 +30,10 @@
     cursor: pointer
     display: block
 
-.button::first-letter,
-.home-button::first-letter
-    text-transform: uppercase
+.button,
+.home-button
+    &::first-letter
+        text-transform: uppercase
 
 @media (width < 600px)
     .button

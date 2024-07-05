@@ -1,17 +1,11 @@
 import PropTypes from 'prop-types';
 import './inputs.sass';
 
-export const FormInputs = ({
-    emailValue,
-    firstNameValue,
-    lastNameValue,
-    onChange,
-    phoneValue
-}) => {
+export const FormInputs = ({ emailValue, firstNameValue, lastNameValue, onChange, phoneValue }) => {
 
     return (
         <div className='inputs'>
-            <h1>{`completa tus datos`}</h1>
+            <h1>completa tus datos</h1>
             <input
                 className='form-inputs'
                 name='firstName'
@@ -19,7 +13,7 @@ export const FormInputs = ({
                 pattern='([a-zA-ZÀ-ž\s]+){2,}'
                 placeholder='Ingresa tu nombre'
                 required
-                title={'Ingresa sólo valores alfabéticos. Ejemplo: Juan'}
+                title='Ingresa sólo valores alfabéticos. Ejemplo: Juan'
                 type='text'
                 value={firstNameValue}
             />
@@ -30,7 +24,7 @@ export const FormInputs = ({
                 pattern='([a-zA-ZÀ-ž\s]+){2,}'
                 placeholder='Ingresa tu apellido'
                 required
-                title={'Ingresa sólo valores alfabéticos. Ejemplo: Pérez'}
+                title='Ingresa sólo valores alfabéticos. Ejemplo: Pérez'
                 type='text'
                 value={lastNameValue}
             />
@@ -41,7 +35,7 @@ export const FormInputs = ({
                 pattern='^[+]?[0123456789]\d{8,20}$'
                 placeholder='Ingresa tu teléfono'
                 required
-                title={'Ingresa sólo valores numéricos. Sin espacios ni guiones.'}
+                title='Ingresa sólo valores numéricos. Sin espacios ni guiones.'
                 type='tel'
                 value={phoneValue}
             />
@@ -52,7 +46,7 @@ export const FormInputs = ({
                 onChange={onChange}
                 placeholder='Ingresa tu e-mail'
                 required
-                title={'Ingresa una dirección de correo electrónico válida. Ejemplo: nombre@mail.com'}
+                title='Ingresa una dirección de correo electrónico válida. Ejemplo: nombre@mail.com'
                 type='email'
                 value={emailValue}
             />
@@ -71,27 +65,12 @@ FormInputs.propTypes = {
     ])
 }
 
-export const SearchInput = ({
-    className,
-    label,
-    name,
-    onChange,
-    placeholder,
-    type,
-    value
-}) => {
+export const SearchInput = ({ className, label, name, onChange, placeholder, type, value }) => {
 
     return (
         <div className={className}>
             <label htmlFor={name}>{label}</label>
-            <input
-                id={name}
-                name={name}
-                onChange={onChange}
-                placeholder={placeholder}
-                type={type}
-                value={value}
-            />
+            <input id={name} name={name} onChange={onChange} placeholder={placeholder} type={type} value={value} />
         </div>
     );
 }

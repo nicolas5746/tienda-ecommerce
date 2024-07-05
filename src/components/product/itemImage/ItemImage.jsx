@@ -11,33 +11,20 @@ const ItemImage = ({ item, linkStyle, optionalText }) => {
     const { getItemImage } = React.useContext(ItemContext);
 
     return (
-        <div className='min-h-100 text-gray-500 aspect-w-1 aspect-h-1 w-full overflow-hidden
-                        rounded-md bg-gray-200 group-hover:opacity-75 lg:aspect-none lg:h-80'
-            style={{ position: 'relative' }}
-        >
+        <div className='min-h-100 text-gray-500 aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75 lg:aspect-none lg:h-80' style={{ position: 'relative' }}>
             <>
                 <Link to={`/product/${item.id}`} aria-label='item-id' style={linkStyle}>
                     {getItemImage(item)}
-                    <span className='article-code'>
-                        {optionalText.charAt(0).toUpperCase() + optionalText.slice(1).toLowerCase()}
-                    </span>
+                    <span className='article-code'>{optionalText.charAt(0).toUpperCase() + optionalText.slice(1).toLowerCase()}</span>
                 </Link>
-                {handleIsInCart(item.id)
-                    ?
+                {handleIsInCart(item.id) &&
                     <RemoveItemIcon
                         color='disabled'
                         fontSize='small'
                         onClick={() => handleRemoveFromCart(item.id)}
-                        style={{
-                            cursor: 'pointer',
-                            left: '2%',
-                            position: 'absolute',
-                            top: '2%',
-                        }}
-                        title={'Eliminar'}
+                        style={{ cursor: 'pointer', left: '2%', position: 'absolute', top: '2%' }}
+                        title='Eliminar'
                     />
-                    :
-                    <></>
                 }
             </>
         </div >

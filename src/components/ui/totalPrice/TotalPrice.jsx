@@ -7,18 +7,8 @@ const TotalPrice = ({ style, totalPrice }) => {
     return (
         <div className='total-price-container'>
             <div className='cart-total-price' style={style}>
-                <p
-                    style={{
-                        fontWeight: '500',
-                        margin: '1%',
-                        textAlign: 'center',
-                        verticalAlign: 'middle',
-                        textTransform: 'capitalize'
-                    }}
-                >
-                    {`precio total: `}
-                    <span className='total-price'>{`usd ${totalPrice}`}</span>
-                </p>
+                <p  className='total-price-header'>precio total:</p>
+                <p className='total-price'>usd&nbsp;{totalPrice}</p>
                 <Payment />
             </div>
         </div>

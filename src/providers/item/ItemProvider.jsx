@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import * as firestore from 'firebase/firestore';
+import { FirebaseError } from '@firebase/util';
 import { Link } from 'react-router-dom';
 import { ItemContext } from '@contexts/contexts';
 import { database } from '@lib/firebase/index';
@@ -13,28 +14,28 @@ const ItemProvider = ({ children }) => {
 
         const itemCollectionRef = firestore.collection(database, 'ItemCollection');
 
-        await firestore.getDocs(itemCollectionRef)
-            .then((snapshot) => {
-                if (snapshot.size === 0) {
+        await firestore
+            .getDocs(itemCollectionRef)
+            .then((response) => {
+                if (response.size === 0) {
                     setInterval(() => {
-                        if (window.confirm(`No se pudo cargar la base de datos. ¿desea recargar la página?`)) {
-                            window.location.reload();
-                        }
+                        if (window.confirm(`No se pudo cargar la base de datos. ¿desea recargar la página?`)) window.location.reload();
                     }, 30000);
                 }
-                setItems(snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() })));
+                setItems(response.docs.map((doc) => ({ id: doc.id, ...doc.data() })));
             })
-            .catch((err) => {
-                console.error(`Error reading document: `, err);
+            .catch((error) => {
+                if (error instanceof FirebaseError) alert(`Error cargando base de datos: ` + error.message);
+                console.error(error);
             });
     }
     // Function to get item category
     const getItemCategory = (item) => {
 
         return (
-            <p className='grey-header'>{`categoría: `}
+            <p className='grey-header'>categoría:
                 <Link to={`/category/${item.category}`} aria-label='category'>
-                    <span className='category'>{item.category}</span>
+                    <span className='category'>&nbsp;{item.category}</span>
                 </Link>
             </p>
         );
@@ -43,12 +44,8 @@ const ItemProvider = ({ children }) => {
     const getItemColour = (item) => {
 
         return (
-            <p className='colour'>
-                {`color: `}
-                <span className='colour'>
-                    {item.colour.toString().charAt(0).toUpperCase() +
-                        item.colour.toString().slice(1).toLowerCase()}
-                </span>
+            <p className='colour'>color:
+                <span className='colour'>&nbsp;{item.colour.toString().charAt(0).toUpperCase() + item.colour.toString().slice(1).toLowerCase()}</span>
             </p>
         );
     }
@@ -56,12 +53,7 @@ const ItemProvider = ({ children }) => {
     const getItemImage = (item) => {
 
         return (
-            <img
-                className='h-full w-full object-cover object-center lg:h-full lg:w-full'
-                alt={item.model.toUpperCase()}
-                src={item.image}
-                title={item.model.toUpperCase()}
-            />
+            <img className='h-full w-full object-cover object-center lg:h-full lg:w-full' alt={item.model.toUpperCase()} src={item.image} title={item.model.toUpperCase()} />
         );
     }
     // Function to get item model
@@ -71,20 +63,18 @@ const ItemProvider = ({ children }) => {
             <p className='model' style={style}>{item.model}</p>
         );
     }
-
+    // Update items
     React.useEffect(() => {
         getItems();
     }, []);
 
     return (
-        <ItemContext.Provider value={{ items, getItemCategory, getItemColour, getItemModel, getItemImage }}>
+        <ItemContext.Provider value={{ items, getItems, getItemCategory, getItemColour, getItemModel, getItemImage }}>
             {children}
         </ItemContext.Provider>
     );
 }
 
-ItemProvider.propTypes = {
-    children: PropTypes.node
-}
+ItemProvider.propTypes = { children: PropTypes.node }
 
 export default ItemProvider;

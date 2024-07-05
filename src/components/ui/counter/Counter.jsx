@@ -7,29 +7,10 @@ const Counter = ({ addItem, removeItem, quantity }) => {
 
     return (
         <div className='counter'>
-            <AddToCartIcon
-                badgeColor={'error'}
-                cartColor={'info'}
-                iconButtonColor={'primary'}
-                quantity={quantity}
-            />
+            <AddToCartIcon badgeColor='error' cartColor='info' iconButtonColor='primary' quantity={quantity} />
             <ButtonGroup>
-                <RemoveItem
-                    color={'primary'}
-                    fontSize={'smaller'}
-                    onClick={removeItem}
-                    style={{ fontSize: '0.8rem', marginRight: '1%' }}
-                    title={'Remover'}
-                    variant={'contained'}
-                />
-                <AddItem
-                    color={'primary'}
-                    fontSize={'smaller'}
-                    onClick={addItem}
-                    style={{ fontSize: '0.8rem', marginLeft: '1%' }}
-                    title={'Agregar'}
-                    variant={'contained'}
-                />
+                <RemoveItem color='primary' fontSize='smaller' onClick={removeItem} style={{ fontSize: '0.8rem', marginRight: '1%' }} title='Remover' variant='contained' />
+                <AddItem color='primary' fontSize='smaller' onClick={addItem} style={{ fontSize: '0.8rem', marginLeft: '1%' }} title='Agregar' variant='contained' />
             </ButtonGroup>
         </div>
     );

@@ -10,13 +10,7 @@ import Badge from '@mui/material/Badge';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 
-export const AddToCartIcon = ({
-    badgeColor,
-    cartColor,
-    iconButtonColor,
-    iconButtonStyle,
-    quantity
-}) => {
+export const AddToCartIcon = ({ badgeColor, cartColor, iconButtonColor, iconButtonStyle, quantity }) => {
 
     return (
         <Badge badgeContent={quantity} color={badgeColor}>
@@ -41,12 +35,7 @@ AddToCartIcon.propTypes = {
 export const AddItem = ({ color, fontSize, onClick, style, title, variant }) => {
 
     return (
-        <Button
-            color={color}
-            onClick={onClick}
-            style={style}
-            variant={variant}
-        >
+        <Button color={color} onClick={onClick} style={style} variant={variant}>
             <AddIcon fontSize={fontSize} titleAccess={title} />
         </Button>
     );
@@ -64,12 +53,7 @@ AddItem.propTypes = {
 export const CartIcon = ({ onMouseEnter, onMouseLeave, style }) => {
 
     return (
-        <IconButton
-            aria-label='cart-icon'
-            onMouseEnter={onMouseEnter}
-            onMouseLeave={onMouseLeave}
-            style={style}
-        >
+        <IconButton aria-label='cart-icon' onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} style={style}>
             <ShoppingCartIcon />
         </IconButton>
     );
@@ -84,12 +68,7 @@ CartIcon.propTypes = {
 export const CheckedIcon = ({ color, fontSize, style, title }) => {
 
     return (
-        <CheckIcon
-            color={color}
-            fontSize={fontSize}
-            style={style}
-            titleAccess={title}
-        />
+        <CheckIcon color={color} fontSize={fontSize} style={style} titleAccess={title} />
     );
 }
 
@@ -100,23 +79,10 @@ CheckedIcon.propTypes = {
     title: PropTypes.string
 }
 
-export const Close = ({
-    color,
-    onClick,
-    onMouseEnter,
-    onMouseLeave,
-    style
-}) => {
+export const Close = ({ color, onClick, onMouseEnter, onMouseLeave, style }) => {
 
     return (
-        <CloseIcon
-            color={color}
-            onClick={onClick}
-            onMouseEnter={onMouseEnter}
-            onMouseLeave={onMouseLeave}
-            style={style}
-            titleAccess={'Cerrar'}
-        />
+        <CloseIcon color={color} onClick={onClick} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} style={style} titleAccess='Cerrar' />
     );
 }
 
@@ -128,22 +94,10 @@ Close.propTypes = {
     style: PropTypes.object
 }
 
-export const RemoveItem = ({
-    color,
-    fontSize,
-    onClick,
-    style,
-    title,
-    variant
-}) => {
+export const RemoveItem = ({ color, fontSize, onClick, style, title, variant }) => {
 
     return (
-        <Button
-            color={color}
-            onClick={onClick}
-            style={style}
-            variant={variant}
-        >
+        <Button color={color} onClick={onClick} style={style} variant={variant} >
             <RemoveIcon fontSize={fontSize} titleAccess={title} />
         </Button>
     );
@@ -161,13 +115,7 @@ RemoveItem.propTypes = {
 export const RemoveItemIcon = ({ color, fontSize, onClick, style, title }) => {
 
     return (
-        <DeleteIcon
-            color={color}
-            fontSize={fontSize}
-            onClick={onClick}
-            style={style}
-            titleAccess={title}
-        />
+        <DeleteIcon color={color} fontSize={fontSize} onClick={onClick} style={style} titleAccess={title} />
     );
 }
 

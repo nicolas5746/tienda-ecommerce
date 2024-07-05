@@ -10,9 +10,9 @@ import Checkout from '@components/cart/checkout/Checkout';
 import TotalPrice from '@ui/totalPrice/TotalPrice';
 import './cartForm.sass';
 
-const CartForm = ({ closeForm }) => {
+const CartForm = ({ formRef }) => {
     // States
-    const [check, setCheck] = React.useState(false);
+    const [completeData, setCompleteData] = React.useState(false);
     const [hover1, setHover1] = React.useState(false);
     const [hover2, setHover2] = React.useState(false);
     const [hover3, setHover3] = React.useState(false);
@@ -23,8 +23,8 @@ const CartForm = ({ closeForm }) => {
         phone: ''
     });
     // Context
-    const { handleResetCart, handleTotalPrice, handleAddedItems } = React.useContext(CartContext);
-    const { handleSendOrder, orderId, setOrderId } = React.useContext(OrderContext);
+    const { handleAddedItems, handleTotalPrice, purchaseIsFinished, toggleCheckout, toggleCartForm } = React.useContext(CartContext);
+    const { handleSendOrder } = React.useContext(OrderContext);
 
     const handleOnChange = (event) => {
         const { name, value } = event.target;
@@ -35,38 +35,29 @@ const CartForm = ({ closeForm }) => {
     // Function on submitting order form
     const handleOnSubmit = (event) => {
         event.preventDefault();
-        setCheck(true);
-        handleSendOrder(form, handleAddedItems(), handleTotalPrice());
+        handleSendOrder(form, handleAddedItems, handleTotalPrice);
+        toggleCheckout(true);
     }
-    // Function to reset cart
-    const handleOnReset = () => {
-        handleResetCart();
-        setOrderId([]);
-        setCheck(false);
-    }
+    // Phone and Email pattern
+    React.useEffect(() => {
+        const emailPattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        (form.phone.match(/\d/g) && form.email.match(emailPattern)) ? setCompleteData(true) : setCompleteData(false);
+    }, [form.email, form.phone]);
 
     return (
         <div className='cart-form'>
-            <div className='cart-form-container'>
-                {check
+            <div className='cart-form-container' ref={formRef}>
+                {purchaseIsFinished
                     ?
-                    <Checkout
-                        orderId={orderId}
-                        resetCart={() => handleOnReset()}
-                    />
+                    <Checkout />
                     :
                     <>
                         <Close
                             color={hover1 ? 'error' : 'primary'}
-                            onClick={closeForm}
+                            onClick={() => toggleCartForm(false)}
                             onMouseEnter={() => setHover1(true)}
                             onMouseLeave={() => setHover1(false)}
-                            style={{
-                                cursor: 'pointer',
-                                left: '0.5%',
-                                position: 'absolute',
-                                top: '0.5%'
-                            }}
+                            style={{ cursor: 'pointer', left: '0.5%', position: 'absolute', top: '0.5%' }}
                         />
                         <div className='form-container'>
                             <Box
@@ -90,11 +81,12 @@ const CartForm = ({ closeForm }) => {
                                     />
                                     <div className='form-buttons'>
                                         <SubmitButton
+                                            disabled={completeData ? false : true}
                                             onMouseEnter={() => setHover2(true)}
                                             onMouseLeave={() => setHover2(false)}
                                             style={{
                                                 color: hover2 ? '#357ec7' : '#dcdcdc',
-                                                backgroundColor: hover2 ? '#dcdcdc' : '#357ec7',
+                                                backgroundColor: !completeData ? '#67686a' : hover2 ? '#dcdcdc' : '#357ec7',
                                                 border: hover2 ? '0.1em solid #357ec7' : '0.1em solid #dcdcdc',
                                                 borderRadius: '0.5em',
                                                 fontSize: '0.8rem',
@@ -104,11 +96,11 @@ const CartForm = ({ closeForm }) => {
                                                 width: '100%',
                                                 whiteSpace: 'nowrap'
                                             }}
-                                            text={'enviar'}
-                                            title={'Enviar'}
+                                            text='Enviar'
+                                            title='Enviar'
                                         />
                                         <Button
-                                            onClick={closeForm}
+                                            onClick={() => toggleCartForm(false)}
                                             onMouseEnter={() => setHover3(true)}
                                             onMouseLeave={() => setHover3(false)}
                                             style={{
@@ -124,16 +116,13 @@ const CartForm = ({ closeForm }) => {
                                                 textTransform: 'uppercase',
                                                 width: '100%'
                                             }}
-                                            text={'cancelar'}
-                                            title={'Cancelar'}
+                                            text='cancelar'
+                                            title='Cancelar'
                                         />
                                     </div>
                                 </form>
                             </Box>
-                            <TotalPrice
-                                totalPrice={handleTotalPrice()}
-                                style={{ marginTop: '18%' }}
-                            />
+                            <TotalPrice totalPrice={handleTotalPrice()} style={{ marginTop: '18%' }} />
                         </div>
                     </>
                 }
@@ -142,8 +131,6 @@ const CartForm = ({ closeForm }) => {
     );
 }
 
-CartForm.propTypes = {
-    closeForm: PropTypes.func
-}
+CartForm.propTypes = { formRef: PropTypes.oneOfType([() => null, PropTypes.number]) }
 
 export default CartForm;

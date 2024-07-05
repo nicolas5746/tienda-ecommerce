@@ -18,11 +18,7 @@ const ItemDetail = () => {
                 .filter((item) => item.id === id)
                 .map((item, index) => (
                     <div className='card' key={index}>
-                        <ItemImage
-                            item={item}
-                            optionalText={`código del artículo: ${item.id}`}
-                            linkStyle={{ pointerEvents: 'none' }}
-                        />
+                        <ItemImage item={item} optionalText={`código del artículo: ${item.id}`} linkStyle={{ pointerEvents: 'none' }} />
                         <div className='mt-4 flex justify-between'>
                             <h2 className='brand'>{item.brand}</h2>
                             {getItemModel(item, { whiteSpace: 'nowrap' })}
@@ -33,16 +29,14 @@ const ItemDetail = () => {
                                 <>
                                     {getItemColour(item)}
                                     <Spacer value={1} />
-                                    <p className='grey-header' style={{ fontWeight: '600' }}>
-                                        {`hay stock disponible!`}
-                                    </p>
+                                    <p className='grey-header' style={{ fontWeight: '600' }}>hay stock disponible!</p>
                                 </>
                                 :
-                                <p className='out-of-stock'>{`lo sentimos, no hay stock disponible!`}</p>
+                                <p className='out-of-stock'>lo sentimos, no hay stock disponible!</p>
                             }
                             <Spacer value={1.5} />
-                            <p className='grey-header'>{`precio:`}</p>
-                            <p className='price'>{`usd ${item.price_usd}`}</p>
+                            <p className='grey-header'>precio:</p>
+                            <p className='price'>usd&nbsp;{item.price_usd}</p>
                             <IsInCart id={item.id} onClick={() => handleAddToCart(item)} />
                         </div>
                     </div>))

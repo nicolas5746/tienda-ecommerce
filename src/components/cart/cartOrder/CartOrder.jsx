@@ -1,6 +1,7 @@
 import React from 'react';
 import { CartContext } from '@contexts/contexts';
 import { Button } from '@ui/buttons/Buttons';
+import { closeOnEvent } from '@utils/utils';
 import CartForm from '@components/cart/cartForm/CartForm';
 import './cartOrder.sass';
 
@@ -8,24 +9,34 @@ const CartOrder = () => {
     // States
     const [hover1, setHover1] = React.useState(false);
     const [hover2, setHover2] = React.useState(false);
-    const [showForm, setShowForm] = React.useState(false);
+    // Reference value
+    const cartFormRef = React.useRef(null);
     // Context
-    const { handleClearCart } = React.useContext(CartContext);
-    // Function to close Form    
-    const handleCloseForm = () => {
-        setHover1(false);
-        setShowForm(!showForm);
-    }
+    const { handleClearCart, purchaseIsFinished, showForm, toggleCartForm } = React.useContext(CartContext);
+    // Callback to close Cart Form when clicking on background or pressing down 'Esc' key
+    const handleCloseOnEvent = React.useCallback((event) => {
+        closeOnEvent(event, !purchaseIsFinished, cartFormRef, () => toggleCartForm(false));
+    }, [purchaseIsFinished, toggleCartForm]);
+    // Events to close Cart Form
+    React.useEffect(() => {
+        if (showForm) setHover1(false);
+        document.addEventListener('click', handleCloseOnEvent, true);
+        document.addEventListener('keydown', handleCloseOnEvent, true);
+        return () => {
+            document.removeEventListener('click', handleCloseOnEvent, true);
+            document.removeEventListener('keydown', handleCloseOnEvent, true);
+        }
+    }, [handleCloseOnEvent, showForm]);
 
     return (
         <>
             {showForm
                 ?
-                <CartForm closeForm={() => handleCloseForm()} />
+                <CartForm formRef={cartFormRef} />
                 :
                 <div className='cart-order'>
                     <Button
-                        onClick={() => setShowForm(!showForm)}
+                        onClick={() => toggleCartForm(true)}
                         onMouseEnter={() => setHover1(true)}
                         onMouseLeave={() => setHover1(false)}
                         style={{
@@ -37,10 +48,11 @@ const CartOrder = () => {
                             width: '105%',
                             whiteSpace: 'nowrap'
                         }}
-                        text={'confirmar compra'}
+                        text='continuar compra'
+                        title='Continuar compra'
                     />
                     <Button
-                        onClick={() => handleClearCart()}
+                        onClick={handleClearCart}
                         onMouseEnter={() => setHover2(true)}
                         onMouseLeave={() => setHover2(false)}
                         style={{
@@ -52,7 +64,8 @@ const CartOrder = () => {
                             width: '105%',
                             whiteSpace: 'nowrap'
                         }}
-                        text={'vaciar carrito'}
+                        text='vaciar carrito'
+                        title='Vaciar carrito'
                     />
                 </div>
             }

@@ -7,8 +7,6 @@ const Spacer = ({ value }) => {
     );
 }
 
-Spacer.propTypes = {
-    value: PropTypes.number
-}
+Spacer.propTypes = { value: PropTypes.number }
 
 export default Spacer;

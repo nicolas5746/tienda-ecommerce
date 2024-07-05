@@ -12,21 +12,13 @@ const Widget = () => {
     const { cartSize } = React.useContext(CartContext);
 
     return (
-        <div className='widget'>
-            <Link to={'/cart'} aria-label='cart'>
+        <div className='widget' title='MI CARRITO'>
+            <Link to='/cart' aria-label='cart'>
                 {cartSize < 1 ?
-                    <CartIcon
-                        onMouseEnter={() => setHover(true)}
-                        onMouseLeave={() => setHover(false)}
-                        style={{ color: hover ? '#ffffff' : '#dcdcdc' }}
-                    />
+                    <CartIcon onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)} style={{ color: hover ? '#357ec7' : '#dcdcdc' }} />
                     :
                     <Badge color='error' badgeContent={cartSize.toString()}>
-                        <CartIcon
-                            onMouseEnter={() => setHover(true)}
-                            onMouseLeave={() => setHover(false)}
-                            style={{ color: hover ? '#ffffff' : '#f5f5f5' }}
-                        />
+                        <CartIcon onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)} style={{ color: hover ? '#357ec7' : '#f5f5f5' }} />
                     </Badge>
                 }
             </Link>

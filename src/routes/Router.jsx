@@ -18,11 +18,11 @@ const Router = () => {
                     <BrowserRouter>
                         <Navbar />
                         <Routes>
-                            <Route path={'/'} element={<Home />} />
-                            <Route path={'/category/:category'} element={<Home />} />
-                            <Route path={'/product/:id'} element={<Product />} />
-                            <Route path={'/cart'} element={<Cart />} />
-                            <Route path={'/*'} element={<NotFound />} />
+                            <Route path='/' element={<Home />} />
+                            <Route path='/category/:category' element={<Home />} />
+                            <Route path='/product/:id' element={<Product />} />
+                            <Route path='/cart' element={<Cart />} />
+                            <Route path='/*' element={<NotFound />} />
                         </Routes>
                         <Footer />
                     </BrowserRouter>

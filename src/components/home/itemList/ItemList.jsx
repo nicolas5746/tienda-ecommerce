@@ -21,39 +21,19 @@ const ItemList = ({ items }) => {
 
     return (
         <div className='mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8'>
-            <h1 className='greeting'>
-                {`Las mejores marcas al mejor precio`}
-            </h1>
-            <SearchInput
-                className={'search'}
-                label={'Buscar'}
-                name={'filter'}
-                onChange={handleOnChange}
-                placeholder={'Ingresar marca o modelo'}
-                type={'text'}
-                value={filter}
-            />
+            <h1 className='greeting'>Las mejores marcas al mejor precio</h1>
+            <SearchInput className='search' label='Buscar' name='filter' onChange={handleOnChange} placeholder='Ingresar marca o modelo' type='text' value={filter} />
             <div className='mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8'>
                 {category ?
-                    items
-                        .filter((item) => item.category === category)
-                        .filter(filtered)
-                        .map((item, index) => <Item item={item} key={index} />)
+                    items.filter((item) => item.category === category).filter(filtered).map((item) => <Item item={item} key={item.id} />)
                     :
-                    items
-                        .filter(filtered)
-                        .map((item, index) => <Item item={item} key={index} />)
+                    items.filter(filtered).map((item) => <Item item={item} key={item.id} />)
                 }
             </div>
         </div>
     );
 }
 
-ItemList.propTypes = {
-    items: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.array
-    ])
-}
+ItemList.propTypes = { items: PropTypes.oneOfType([PropTypes.string, PropTypes.array]) }
 
 export default ItemList;

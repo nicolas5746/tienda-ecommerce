@@ -10,26 +10,18 @@ const Item = ({ item }) => {
     const { getItemModel } = React.useContext(ItemContext);
 
     return (
-        <div
-            className='group relative'
-            style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}
-        >
-            <ItemImage
-                item={item}
-                optionalText={''}
-            />
+        <div className='group relative' style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+            <ItemImage item={item} optionalText='' />
             <div className='mt-4 flex justify-between'>
                 <h2 className='brand'>{item.brand}</h2>
                 {getItemModel(item, { whiteSpace: 'nowrap' })}
-                <p className='price' >{`usd ${item.price_usd}`}</p>
+                <p className='price'>usd&nbsp;{item.price_usd}</p>
                 <IsInCart id={item.id} onClick={() => handleAddToCart(item)} />
             </div>
         </div>
     );
 }
 
-Item.propTypes = {
-    item: PropTypes.object
-}
+Item.propTypes = { item: PropTypes.object }
 
 export default Item;

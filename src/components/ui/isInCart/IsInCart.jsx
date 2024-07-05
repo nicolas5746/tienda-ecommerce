@@ -17,12 +17,7 @@ const IsInCart = ({ id, onClick }) => {
             {handleIsInCart(id)
                 ?
                 <>
-                    <CheckedIcon
-                        color='success'
-                        fontSize='medium'
-                        style={{ display: 'block', margin: '5% 0 0 35%' }}
-                        title={'Agregado'}
-                    />
+                    <CheckedIcon color='success' fontSize='medium' style={{ display: 'block', margin: '5% 0 0 35%' }} title='Agregado' />
                     <Link to='/cart' aria-label='cart'>
                         <Button
                             style={{
@@ -35,9 +30,10 @@ const IsInCart = ({ id, onClick }) => {
                                 padding: '3%',
                                 width: '120%'
                             }}
-                            text={'ir al carrito'}
+                            text='ir al carrito'
                             onMouseEnter={() => setHover(true)}
                             onMouseLeave={() => setHover(false)}
+                            title='IR AL CARRITO'
                         />
                     </Link>
                 </>
@@ -53,10 +49,11 @@ const IsInCart = ({ id, onClick }) => {
                         padding: '3%',
                         width: '120%'
                     }}
-                    text={'agregar al carrito'}
+                    text='agregar al carrito'
                     onClick={onClick}
                     onMouseEnter={() => setHover(true)}
                     onMouseLeave={() => setHover(false)}
+                    title='AGREGAR AL CARRITO'
                 />
             }
         </div>
