@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { CartContext, OrderContext } from '@contexts/contexts';
+import { CartContext, ItemContext, OrderContext } from '@contexts/contexts';
 import { Button } from '@ui/buttons/Buttons';
 import { Close } from '@ui/icons/Icons';
 import { closeOnEvent, copyOnClick } from '@utils/utils';
@@ -14,7 +14,8 @@ const Checkout = () => {
     const [hover2, setHover2] = React.useState(false);
     const [isCopied, setIsCopied] = React.useState(false);
     // Context
-    const { handleResetCart, purchaseIsFinished } = React.useContext(CartContext);
+    const { handleResetCart, handleUpdateStock, purchaseIsFinished } = React.useContext(CartContext);
+    const { getItems } = React.useContext(ItemContext);
     const { orderId, success } = React.useContext(OrderContext);
     // Reference value
     const checkoutRef = React.useRef(null);
@@ -40,6 +41,13 @@ const Checkout = () => {
             window.removeEventListener('beforeunload', handleCloseCheckout);
         }
     }, [handleCloseCheckout, handleCloseOnEvent]);
+    // Update items after purchase
+    React.useEffect(() => {
+        if (success) {
+            handleUpdateStock();
+            getItems();
+        }
+    }, [getItems, handleUpdateStock, success]);
 
     return (
         <div className='cart-form'>

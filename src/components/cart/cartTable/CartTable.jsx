@@ -1,8 +1,8 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Link, useNavigate } from 'react-router-dom';
 import { CartContext, ItemContext } from '@contexts/contexts';
 import { Close } from '@ui/icons/Icons';
+import { closeOnEvent } from '@utils/utils';
 import CartOrder from '@components/cart/cartOrder/CartOrder';
 import ItemImage from '@components/product/itemImage/ItemImage';
 import Counter from '@ui/counter/Counter';
@@ -10,24 +10,41 @@ import Spacer from '@ui/spacer/Spacer';
 import TotalPrice from '@ui/totalPrice/TotalPrice';
 import './cartTable.sass';
 
-const CartTable = ({ tableRef }) => {
+const CartTable = () => {
     // States
     const [hover, setHover] = React.useState(false);
     // Context
-    const { cart, handleSubTotalPrice, handleTotalPrice, handleIncreaseItem, handleDecreaseItem, showCart, toggleShowCart } = React.useContext(CartContext);
+    const { cart, handleSubTotalPrice, handleTotalPrice, handleIncreaseItem, handleDecreaseItem, purchaseIsFinished, showCart, toggleShowCart } = React.useContext(CartContext);
     const { getItemCategory, getItemColour, getItemModel } = React.useContext(ItemContext);
+    // Reference value
+    const cartTableRef = React.useRef(null);
     // Access to navigation object
     const navigate = useNavigate();
     // Function to close Cart and return to previous page
-    const handleCloseCart = () => {
+    const handleCloseCart = React.useCallback(() => {
         toggleShowCart(false);
         navigate(-1);
-    }
+    }, [navigate, toggleShowCart]);
+    // Callback to close Cart when clicking on background or pressing down 'Esc' key
+    const handleCloseOnEvent = React.useCallback((event) => {
+        closeOnEvent(event, !purchaseIsFinished, cartTableRef, handleCloseCart);
+    }, [handleCloseCart, purchaseIsFinished]);
+    // Apply events to close Cart
+    React.useEffect(() => {
+        if (showCart) {
+            document.addEventListener('click', handleCloseOnEvent, true);
+            document.addEventListener('keydown', handleCloseOnEvent, true);
+        }
+        return () => {
+            document.removeEventListener('click', handleCloseOnEvent, true);
+            document.removeEventListener('keydown', handleCloseOnEvent, true);
+        }
+    }, [handleCloseOnEvent, showCart]);
 
     return (
         <div className='cart-table'>
             {showCart &&
-                <div className='table-container' ref={tableRef}>
+                <div className='table-container' ref={cartTableRef}>
                     <div className='table-list'>
                         {cart.map((item) => (
                             <div className='table-card' key={item.id}>
@@ -72,7 +89,5 @@ const CartTable = ({ tableRef }) => {
         </div>
     );
 }
-
-CartTable.propTypes = { tableRef: PropTypes.oneOfType([() => null, PropTypes.number]) }
 
 export default CartTable;

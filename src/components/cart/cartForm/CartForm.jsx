@@ -1,16 +1,16 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import { CartContext, OrderContext } from '@contexts/contexts';
 import { Button } from '@ui/buttons/Buttons';
 import { SubmitButton } from '@ui/buttons/Buttons';
 import { Close } from '@ui/icons/Icons';
 import { FormInputs } from '@ui/inputs/Inputs';
+import { closeOnEvent } from '@utils/utils';
 import Checkout from '@components/cart/checkout/Checkout';
 import TotalPrice from '@ui/totalPrice/TotalPrice';
 import './cartForm.sass';
 
-const CartForm = ({ formRef }) => {
+const CartForm = () => {
     // States
     const [completeData, setCompleteData] = React.useState(false);
     const [hover1, setHover1] = React.useState(false);
@@ -24,8 +24,10 @@ const CartForm = ({ formRef }) => {
     });
     // Context
     const { handleAddedItems, handleTotalPrice, purchaseIsFinished, toggleCheckout, toggleCartForm } = React.useContext(CartContext);
-    const { handleSendOrder } = React.useContext(OrderContext);
-
+    const { handleSendOrder, toggleSuccess } = React.useContext(OrderContext);
+    // Reference value
+    const cartFormRef = React.useRef(null);
+    // Set values on change input
     const handleOnChange = (event) => {
         const { name, value } = event.target;
         setForm((data) => {
@@ -38,15 +40,33 @@ const CartForm = ({ formRef }) => {
         handleSendOrder(form, handleAddedItems, handleTotalPrice);
         toggleCheckout(true);
     }
-    // Phone and Email pattern
+    // Callback to close Cart Form when clicking on background or pressing down 'Esc' key
+    const handleCloseOnEvent = React.useCallback((event) => {
+        closeOnEvent(event, !purchaseIsFinished, cartFormRef, () => toggleCartForm(false));
+    }, [purchaseIsFinished, toggleCartForm]);
+    // Reset success order
+    React.useEffect(() => {
+        if (!purchaseIsFinished) toggleSuccess(false);
+    }, [purchaseIsFinished, toggleSuccess]);
+    // Email and phone pattern
     React.useEffect(() => {
         const emailPattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        (form.phone.match(/\d/g) && form.email.match(emailPattern)) ? setCompleteData(true) : setCompleteData(false);
+        const phonePattern = /\d/g;
+        (form.phone.match(phonePattern) && form.email.match(emailPattern)) ? setCompleteData(true) : setCompleteData(false);
     }, [form.email, form.phone]);
+    // // Apply events to close Cart Form
+    React.useEffect(() => {
+        document.addEventListener('click', handleCloseOnEvent, true);
+        document.addEventListener('keydown', handleCloseOnEvent, true);
+        return () => {
+            document.removeEventListener('click', handleCloseOnEvent, true);
+            document.removeEventListener('keydown', handleCloseOnEvent, true);
+        }
+    }, [handleCloseOnEvent]);
 
     return (
         <div className='cart-form'>
-            <div className='cart-form-container' ref={formRef}>
+            <div className='cart-form-container' ref={cartFormRef}>
                 {purchaseIsFinished
                     ?
                     <Checkout />
@@ -130,7 +150,5 @@ const CartForm = ({ formRef }) => {
         </div>
     );
 }
-
-CartForm.propTypes = { formRef: PropTypes.oneOfType([() => null, PropTypes.number]) }
 
 export default CartForm;

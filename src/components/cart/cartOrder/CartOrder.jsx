@@ -1,7 +1,6 @@
 import React from 'react';
 import { CartContext } from '@contexts/contexts';
 import { Button } from '@ui/buttons/Buttons';
-import { closeOnEvent } from '@utils/utils';
 import CartForm from '@components/cart/cartForm/CartForm';
 import './cartOrder.sass';
 
@@ -9,30 +8,18 @@ const CartOrder = () => {
     // States
     const [hover1, setHover1] = React.useState(false);
     const [hover2, setHover2] = React.useState(false);
-    // Reference value
-    const cartFormRef = React.useRef(null);
     // Context
-    const { handleClearCart, purchaseIsFinished, showForm, toggleCartForm } = React.useContext(CartContext);
-    // Callback to close Cart Form when clicking on background or pressing down 'Esc' key
-    const handleCloseOnEvent = React.useCallback((event) => {
-        closeOnEvent(event, !purchaseIsFinished, cartFormRef, () => toggleCartForm(false));
-    }, [purchaseIsFinished, toggleCartForm]);
-    // Events to close Cart Form
+    const { handleClearCart, showForm, toggleCartForm } = React.useContext(CartContext);
+    // Reset button hover
     React.useEffect(() => {
         if (showForm) setHover1(false);
-        document.addEventListener('click', handleCloseOnEvent, true);
-        document.addEventListener('keydown', handleCloseOnEvent, true);
-        return () => {
-            document.removeEventListener('click', handleCloseOnEvent, true);
-            document.removeEventListener('keydown', handleCloseOnEvent, true);
-        }
-    }, [handleCloseOnEvent, showForm]);
+    }, [showForm]);
 
     return (
         <>
             {showForm
                 ?
-                <CartForm formRef={cartFormRef} />
+                <CartForm />
                 :
                 <div className='cart-order'>
                     <Button

@@ -1,9 +1,9 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { CartContext, ItemContext, OrderContext } from '@contexts/contexts';
+import { Link } from 'react-router-dom';
+import { CartContext } from '@contexts/contexts';
 import { Button } from '@ui/buttons/Buttons';
 import { AddToCartIcon } from '@ui/icons/Icons';
-import { closeOnEvent, scrollToTop } from '@utils/utils';
+import { scrollToTop } from '@utils/utils';
 import CartTable from '@components/cart/cartTable/CartTable';
 import './cart.sass';
 
@@ -11,39 +11,12 @@ const Cart = () => {
     // States
     const [hover, setHover] = React.useState(false);
     // Context
-    const { cartSize, handleUpdateStock, purchaseIsFinished, showCart, toggleShowCart } = React.useContext(CartContext);
-    const { getItems } = React.useContext(ItemContext);
-    const { handleClearOrderId, success } = React.useContext(OrderContext);
-    // Reference value
-    const cartTableRef = React.useRef(null);
-    // Access to navigation object
-    const navigate = useNavigate();
-    // Function to close Cart and return to previous page
-    const handleCloseCart = React.useCallback(() => {
-        toggleShowCart(false);
-        navigate(-1);
-    }, [navigate, toggleShowCart]);
-    // Callback to close Cart when clicking on background or pressing down 'Esc' key
-    const handleCloseOnEvent = React.useCallback((event) => {
-        closeOnEvent(event, !purchaseIsFinished, cartTableRef, handleCloseCart);
-    }, [handleCloseCart, purchaseIsFinished]);
-    // Update items after purchase
+    const { cartSize, toggleShowCart } = React.useContext(CartContext);
+    // Show Cart Table
     React.useEffect(() => {
         (cartSize >= 1) ? (toggleShowCart(true), scrollToTop()) : toggleShowCart(false);
-        (success) ? (getItems(), handleUpdateStock()) : handleClearOrderId();
-    }, [cartSize, getItems, handleClearOrderId, handleUpdateStock, success, toggleShowCart]);
-    
-    React.useEffect(() => {
-        if (showCart) {
-            document.addEventListener('click', handleCloseOnEvent, true);
-            document.addEventListener('keydown', handleCloseOnEvent, true);
-        }
-        return () => {
-            document.removeEventListener('click', handleCloseOnEvent, true);
-            document.removeEventListener('keydown', handleCloseOnEvent, true);
-        }
-    }, [handleCloseOnEvent, showCart]);
-    
+    }, [cartSize, toggleShowCart]);
+
     return (
         <div className='cart'>
             {cartSize < 1
@@ -71,7 +44,7 @@ const Cart = () => {
                     </Link>
                 </>
                 :
-                <CartTable tableRef={cartTableRef} />
+                <CartTable />
             }
         </div>
     );

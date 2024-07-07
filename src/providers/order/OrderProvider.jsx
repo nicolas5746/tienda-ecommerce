@@ -27,20 +27,22 @@ const OrderProvider = ({ children }) => {
         }
 
         try {
+            setOrderId('');
             await firestore.setDoc(firestore.doc(database, 'OrderCollection', randomIdNumber), order);
             setOrderId(randomIdNumber);
             setSucess(true);
         } catch (error) {
+            setOrderId('');
             setSucess(false);
             if (error instanceof FirebaseError) alert(`Error cargando base de datos: ` + error.message);
             console.error(error);
         }
     }
-    // Set Order ID to an empty string
-    const handleClearOrderId = () => setOrderId('');
+    // Toggle conditioners
+    const toggleSuccess = (value) => (value) ? setSucess(true) : setSucess(false);
 
     return (
-        <OrderContext.Provider value={{ handleClearOrderId, handleSendOrder, orderId, success }}>
+        <OrderContext.Provider value={{ handleSendOrder, orderId, success, toggleSuccess }}>
             {children}
         </OrderContext.Provider>
     );

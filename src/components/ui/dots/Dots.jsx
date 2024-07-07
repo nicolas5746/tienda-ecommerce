@@ -4,10 +4,7 @@ const Dots = () => {
 
     return (
         <div className='dots'>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
+            {Array.from({ length: 4 }, (_, index) => <div key={index}></div>)}
         </div>
     );
 }
