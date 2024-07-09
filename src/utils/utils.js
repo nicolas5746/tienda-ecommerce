@@ -12,9 +12,9 @@ export const copyOnClick = (copy, state) => {
     }
 }
 // Function to close window when clicking on background or pressing down 'Esc' key
-export const closeOnEvent = (event, condition, ref, action) => {
+export const closeOnEvent = (event, condition, ref, callback) => {
     const { code } = event;
-    if ((code === 'Escape' && condition) || (ref.current && !ref.current.contains(event.target))) action();
+    if ((code === 'Escape' && condition) || (ref.current && !ref.current.contains(event.target))) callback();
 }
 // Function to scroll to the browser window top
 export const scrollToTop = () => {

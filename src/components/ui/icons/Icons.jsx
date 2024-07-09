@@ -26,10 +26,7 @@ AddToCartIcon.propTypes = {
     cartColor: PropTypes.string,
     iconButtonColor: PropTypes.string,
     iconButtonStyle: PropTypes.object,
-    quantity: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.number
-    ])
+    quantity: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
 }
 
 export const AddItem = ({ color, fontSize, onClick, style, title, variant }) => {

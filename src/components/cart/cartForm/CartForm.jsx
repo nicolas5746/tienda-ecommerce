@@ -24,7 +24,7 @@ const CartForm = () => {
     });
     // Context
     const { handleAddedItems, handleTotalPrice, purchaseIsFinished, toggleCheckout, toggleCartForm } = React.useContext(CartContext);
-    const { handleSendOrder, toggleSuccess } = React.useContext(OrderContext);
+    const { handleSendOrder } = React.useContext(OrderContext);
     // Reference value
     const cartFormRef = React.useRef(null);
     // Set values on change input
@@ -44,10 +44,6 @@ const CartForm = () => {
     const handleCloseOnEvent = React.useCallback((event) => {
         closeOnEvent(event, !purchaseIsFinished, cartFormRef, () => toggleCartForm(false));
     }, [purchaseIsFinished, toggleCartForm]);
-    // Reset success order
-    React.useEffect(() => {
-        if (!purchaseIsFinished) toggleSuccess(false);
-    }, [purchaseIsFinished, toggleSuccess]);
     // Email and phone pattern
     React.useEffect(() => {
         const emailPattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;

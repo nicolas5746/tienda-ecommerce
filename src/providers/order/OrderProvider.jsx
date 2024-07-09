@@ -7,12 +7,15 @@ import { database } from '@lib/firebase/index';
 
 const OrderProvider = ({ children }) => {
     // States
+    const [sucessfulOrder, setSucessfulOrder] = React.useState(false);
+    const [failedOrder, setFailedOrder] = React.useState(false);
+    const [failureMessage, setFailureMessage] = React.useState('');
     const [orderId, setOrderId] = React.useState('');
-    const [success, setSucess] = React.useState(false);
     // Function to send order to database
     const handleSendOrder = async (form, addedItems, totalPrice) => {
 
         const randomIdNumber = new Date().toISOString().slice(0, 10).split('-').join('') + window.crypto.getRandomValues(new Uint32Array(1));
+        const orderRef = firestore.doc(database, 'OrderCollection', randomIdNumber);
 
         const order = {
             buyer: {
@@ -22,27 +25,29 @@ const OrderProvider = ({ children }) => {
                 email: form.email
             },
             items: addedItems(),
-            timestamp: firestore.serverTimestamp(),
             total: totalPrice()
         }
 
+        setSucessfulOrder(false);
+        setFailedOrder(false);
+        setOrderId('');
+        setFailureMessage('');
+
         try {
-            setOrderId('');
-            await firestore.setDoc(firestore.doc(database, 'OrderCollection', randomIdNumber), order);
+            await firestore.setDoc(orderRef, order);
+            await firestore.updateDoc(orderRef, { timestamp: firestore.serverTimestamp() });
             setOrderId(randomIdNumber);
-            setSucess(true);
+            setSucessfulOrder(true);
         } catch (error) {
-            setOrderId('');
-            setSucess(false);
-            if (error instanceof FirebaseError) alert(`Error cargando base de datos: ` + error.message);
+            setFailureMessage(error.message);
+            setFailedOrder(true);
             console.error(error);
+            if (error instanceof FirebaseError) alert(`Error cargando base de datos: ` + error.message);
         }
     }
-    // Toggle conditioners
-    const toggleSuccess = (value) => (value) ? setSucess(true) : setSucess(false);
 
     return (
-        <OrderContext.Provider value={{ handleSendOrder, orderId, success, toggleSuccess }}>
+        <OrderContext.Provider value={{ failedOrder, failureMessage, handleSendOrder, orderId, sucessfulOrder }}>
             {children}
         </OrderContext.Provider>
     );

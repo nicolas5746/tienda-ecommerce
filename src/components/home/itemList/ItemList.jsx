@@ -11,9 +11,7 @@ const ItemList = ({ items }) => {
     // Dynamic parameter
     const { category } = useParams();
     // This function sets the setFilter state every time you change your input
-    const handleOnChange = (event) => {
-        setFilter(event.target.value);
-    }
+    const handleOnChange = (event) => setFilter(event.target.value);
     // This function will filter items by brand or model no matter what sort of case is input
     const filtered = (item) => {
         return item.brand.match(filter.toLowerCase()) || item.model.match(filter.toLowerCase());

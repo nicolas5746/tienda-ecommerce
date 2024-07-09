@@ -16,7 +16,7 @@ const Checkout = () => {
     // Context
     const { handleResetCart, handleUpdateStock, purchaseIsFinished } = React.useContext(CartContext);
     const { getItems } = React.useContext(ItemContext);
-    const { orderId, success } = React.useContext(OrderContext);
+    const { failedOrder, failureMessage, orderId, sucessfulOrder } = React.useContext(OrderContext);
     // Reference value
     const checkoutRef = React.useRef(null);
     // Access to navigation object
@@ -30,6 +30,13 @@ const Checkout = () => {
     const handleCloseOnEvent = React.useCallback((event) => {
         closeOnEvent(event, purchaseIsFinished, checkoutRef, handleCloseCheckout);
     }, [handleCloseCheckout, purchaseIsFinished]);
+    // Update items after purchase
+    React.useEffect(() => {
+        if (sucessfulOrder) {
+            handleUpdateStock();
+            getItems();
+        }
+    }, [getItems, handleUpdateStock, sucessfulOrder]);
     // Close Checkout and reset Cart
     React.useEffect(() => {
         document.addEventListener('click', handleCloseOnEvent, true);
@@ -41,13 +48,6 @@ const Checkout = () => {
             window.removeEventListener('beforeunload', handleCloseCheckout);
         }
     }, [handleCloseCheckout, handleCloseOnEvent]);
-    // Update items after purchase
-    React.useEffect(() => {
-        if (success) {
-            handleUpdateStock();
-            getItems();
-        }
-    }, [getItems, handleUpdateStock, success]);
 
     return (
         <div className='cart-form'>
@@ -60,7 +60,7 @@ const Checkout = () => {
                     style={{ cursor: 'pointer', left: '0.5%', position: 'absolute', top: '0.5%' }}
                 />
                 <div className='checkout-message'>
-                    {success
+                    {sucessfulOrder
                         ?
                         <>
                             <img alt='Tienda Americana' src='https://i.postimg.cc/Jh4Q7W6r/logo.png' title='Tienda Americana' />
@@ -89,7 +89,14 @@ const Checkout = () => {
                             />
                         </>
                         :
-                        <Dots />
+                        failedOrder
+                            ?
+                            <>
+                                <h1>Algo salió mal:</h1>
+                                <p>{failureMessage}</p>
+                            </>
+                            :
+                            <Dots />
                     }
                 </div>
             </div>
