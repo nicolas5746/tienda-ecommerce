@@ -19,7 +19,7 @@ const Cart = () => {
     return (
         <section className='pb-[10%]'>
             {cartSize < 1 ?
-                <>
+                <div className='absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2'>
                     <div className='flex flex-col items-center justify-center text-center text-5lg text-ferrari font-semibold font-lato pb-[5%] pt-[25%] 3md:pt-[15%]'>
                         <AddToCartIcon badgeColor='error' cartColor='primary' iconButtonColor='primary' iconButtonStyle={{ pointerEvents: 'none' }} quantity={cartSize.toString()} />
                         <span className='first-letter:uppercase'>tu carrito está vacío!</span>
@@ -33,14 +33,14 @@ const Cart = () => {
                                 backgroundColor: hover ? '#dcdcdc' : '#357ec7',
                                 border: hover ? '0.1em solid #357ec7' : '0.1em solid #dcdcdc',
                                 borderRadius: '0.5em',
-                                padding: '0.5%',
-                                width: '20%'
+                                padding: '3%',
+                                width: '80%'
                             }}
                             text='continuar comprando'
                             title='Continuar comprando'
                         />
                     </Link>
-                </>
+                </div>
                 :
                 <CartTable />}
         </section>

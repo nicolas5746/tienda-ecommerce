@@ -63,9 +63,7 @@ const CartProvider = ({ children }) => {
         window.localStorage.clear();
     }, []);
     // Confirm if remove all items from cart
-    const handleClearCart = () => {
-        (window.confirm(`¿Deseas vaciar tu carrito?`)) ? handleResetCart() : setCart([...cart]);
-    }
+    const handleClearCart = () => (window.confirm(`¿Deseas vaciar tu carrito?`)) ? handleResetCart() : setCart([...cart]);
     // Function to calculate subtotal price of each item    
     const handleSubTotalPrice = (item) => {
         let subTotal = item.priceUsd * item.quantity;

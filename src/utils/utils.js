@@ -16,5 +16,5 @@ export const closeOnEvent = (event, condition, ref, callback) => {
     const { code } = event;
     if ((code === 'Escape' && condition) || (ref.current && !ref.current.contains(event.target))) callback();
 }
-// Scroll to the browser window top
+// Scroll to the top of window  
 export const scrollToTop = () => window.scroll({ behavior: 'smooth', left: 0, top: 0 });

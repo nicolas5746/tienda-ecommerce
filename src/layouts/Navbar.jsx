@@ -37,7 +37,7 @@ const Navbar = () => {
                                 <img className='hidden lg:block w-[5%] mr-[2%]' alt='Tienda Americana' src='https://res.cloudinary.com/dmnyy2q99/image/upload/v1729533634/title_cprjlh.png' title='Tienda Americana' />
                                 <div className='flex flex-1 items-center justify-center sm:items-stretch sm:justify-start' onClick={() => scrollToTop()}>
                                     <Link to='/' className='flex flex-shrink-0 items-center text-base text-roman-silver hover:text-gainsboro roboto hover:scale-105' aria-label='home' title='Tienda Americana'>
-                                        <h1 className='page-title text-center align-middle text-2xs 4md:text-3sm lg:text-5lg text-crimson hover:text-windows-blue font-normal hover:font-extrabold font-bungee-inline'>Tienda Americana</h1>
+                                        <h1 className='page-title text-center align-middle text-sm 4md:text-3sm lg:text-5lg text-crimson hover:text-windows-blue font-normal hover:font-extrabold font-bungee-inline'>Tienda Americana</h1>
                                     </Link>
                                     <div className='hidden sm:ml-10 sm:block'>
                                         <div className='flex space-x-4 capitalize'>

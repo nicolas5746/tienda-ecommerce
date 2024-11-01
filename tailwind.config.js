@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ['./src/**/*.{js,jsx}',],
+  content: ['./src/**/*.{js,jsx}'],
   theme: {
     extend: {
       animation: {
@@ -8,17 +8,13 @@ export default {
         'animate-greet': 'greeting 3s ease infinite'
       },
       keyframes: {
-        greeting: {
-          'to': { backgroundPosition: '200%' }
-        },
+        greeting: { 'to': { backgroundPosition: '200%' } },
         spinner: {
           '0%': { transform: 'rotate(0deg)' },
-          '100%': { transform: 'rotate(360deg)' },
+          '100%': { transform: 'rotate(360deg)' }
         }
       },
-      backgroundSize: {
-        '200%': '200% auto',
-      },
+      backgroundSize: { '200%': '200% auto' },
       colors: {
         'azure': '#f0ffff',
         'blood': '#660000',
@@ -99,11 +95,9 @@ export default {
         '.hide-scrollbar': {
           '-ms-overflow-style': 'none',
           'scrollbar-width': 'none',
-          '&::-webkit-scrollbar': {
-            display: 'none'
-          }
+          '&::-webkit-scrollbar': { display: 'none' }
         }
-      })
+      });
     })
   ]
 }
