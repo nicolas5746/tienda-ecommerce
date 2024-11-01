@@ -1,0 +1,27 @@
+* {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    -moz-osx-font-smoothing: grayscale;
+    -moz-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
+
+.greeting {
+    animation: greeting 3s linear infinite;
+    text-shadow: 0.1em 0.3em 0.8em #151b54;
+}
+
+@keyframes greeting {
+    to {
+        background-position: 200%;
+    }
+}
