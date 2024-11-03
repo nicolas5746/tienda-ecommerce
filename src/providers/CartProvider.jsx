@@ -10,17 +10,28 @@ const CartProvider = ({ children }) => {
     // States
     const [showCart, setShowCart] = React.useState(false);
     const [showForm, setShowForm] = React.useState(false);
+    const [message, setMessage] = React.useState('');
+    const [notification, setNotification] = React.useState({ accept: null, decline: null, declinable: false, show: false });
     const [purchaseIsFinished, setPurchaseIsFinished] = React.useState(false);
     const [cart, setCart] = React.useState(lsCart || []);
     const [size, setSize] = React.useState([]);
     const [addedItem, setAddedItem] = React.useState(1);
+    // Show and hide notifications
+    const handleNotification = (values, msg) => {
+        setMessage(msg);
+        setNotification(values);
+    }
+    // Reset notification and message to default
+    const resetNotification = React.useCallback(() => {
+        handleNotification({ accept: null, decline: null, declinable: false, show: false }, '');
+    }, []);
     // Check if an item is already in cart
     const handleIsInCart = (id) => {
         return id !== undefined ? cart.find(item => item.id === id) : undefined;
     }
     // Add an item to cart
     const handleAddToCart = (item) => {
-        if (item.stock < 1) alert(`No hay stock disponible para éste artículo!`);
+        if (item.stock < 1) handleNotification({ accept: () => setNotification({ show: false }), decline: null, declinable: false, show: true }, 'No hay stock disponible para éste artículo!');
         if (item.stock >= 1) {
             const addItem = {
                 id: item.id,
@@ -39,31 +50,35 @@ const CartProvider = ({ children }) => {
         }
     }
     // Remove an item from cart
-    const handleRemoveFromCart = (id) => {
-        (window.confirm(`¿Deseas eliminar éste producto de tu carrito?`))
-            ?
+    const handleRemoveFromCart = (id, abort) => {
+        (abort) ?
+            cart.forEach((item) => {
+                if (item.id === id && item.quantity < 1) item.quantity++;
+            })
+            :
             cart.forEach((item, index) => {
                 if (item.id === id) {
                     item.quantity = 1;
                     cart.splice(index, 1);
                 }
-            })
-            :
-            cart.forEach((item) => {
-                if (item.id === id && item.quantity < 1) item.quantity++;
             });
+        resetNotification();
         setCart([...cart]);
     }
     // Empty cart
     const handleResetCart = React.useCallback(() => {
+        resetNotification();
         setCart([]);
         setPurchaseIsFinished(false);
         setShowForm(false);
         setShowCart(false);
         window.localStorage.clear();
-    }, []);
+    }, [resetNotification]);
     // Confirm if remove all items from cart
-    const handleClearCart = () => (window.confirm(`¿Deseas vaciar tu carrito?`)) ? handleResetCart() : setCart([...cart]);
+    const handleUpdateCart = () => {
+        resetNotification();
+        setCart([...cart]);
+    }
     // Function to calculate subtotal price of each item    
     const handleSubTotalPrice = (item) => {
         let subTotal = item.priceUsd * item.quantity;
@@ -81,7 +96,7 @@ const CartProvider = ({ children }) => {
     const handleIncreaseItem = (id) => {
         cart.forEach((item) => {
             if (item.id === id) {
-                if (item.quantity >= item.stock) alert(`No hay más stock disponible para éste artículo!`);
+                if (item.quantity >= item.stock) handleNotification({ accept: () => setNotification({ show: false }), decline: null, declinable: false, show: true }, 'No hay más stock disponible para éste artículo!');
                 if (item.quantity < item.stock) item.quantity++;
             }
         });
@@ -92,7 +107,7 @@ const CartProvider = ({ children }) => {
         cart.forEach((item) => {
             if (item.id === id) {
                 if (item.quantity > 0) item.quantity--;
-                if (item.quantity < 1) handleRemoveFromCart(item.id);
+                if (item.quantity < 1) handleNotification({ accept: () => handleRemoveFromCart(item.id, false), decline: () => handleRemoveFromCart(item.id, true), declinable: true, show: true }, '¿Deseas eliminar éste producto de tu carrito?');
             }
         });
         setCart([...cart]);
@@ -169,8 +184,8 @@ const CartProvider = ({ children }) => {
             handleIsInCart,
             handleAddToCart,
             handleRemoveFromCart,
-            handleClearCart,
             handleResetCart,
+            handleUpdateCart,
             handleSubTotalPrice,
             handleTotalPrice,
             handleIncreaseItem,
@@ -178,7 +193,11 @@ const CartProvider = ({ children }) => {
             handleStoreSize,
             handleAddedItems,
             handleUpdateStock,
+            handleNotification,
+            message,
+            notification,
             purchaseIsFinished,
+            resetNotification,
             showCart,
             showForm,
             toggleCheckout,

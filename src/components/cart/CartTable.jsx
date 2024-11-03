@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { CartContext, ItemContext, OrderContext } from '@/contexts/Contexts';
 import { Close } from '@ui/Icons';
 import { closeOnEvent } from '@/utils/utils';
+import { blue } from '@mui/material/colors';
 import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
@@ -17,7 +18,7 @@ const CartTable = () => {
     // JS Local Storage
     const lsSelectedSize = JSON.parse(window.localStorage.getItem('selectedSize'));
     // Context
-    const { cart, cartSize, handleSubTotalPrice, handleTotalPrice, handleIncreaseItem, handleDecreaseItem, handleStoreSize, purchaseIsFinished, showCart, showForm, toggleShowCart } = React.useContext(CartContext);
+    const { cart, cartSize, handleSubTotalPrice, handleTotalPrice, handleIncreaseItem, handleDecreaseItem, handleStoreSize, notification, purchaseIsFinished, showCart, showForm, toggleShowCart } = React.useContext(CartContext);
     const { getItemCategory, getItemColour, getItemModel } = React.useContext(ItemContext);
     const { sucessfulOrder, toggleOrder } = React.useContext(OrderContext);
     // States
@@ -41,7 +42,7 @@ const CartTable = () => {
     }, [handleCloseCart, purchaseIsFinished]);
     // Apply events to close cart
     React.useEffect(() => {
-        if (showCart && !showForm) {
+        if (showCart && !showForm && !notification.show) {
             document.addEventListener('click', handleCloseOnEvent, true);
             document.addEventListener('keydown', handleCloseOnEvent, true);
             return () => {
@@ -49,7 +50,7 @@ const CartTable = () => {
                 document.removeEventListener('keydown', handleCloseOnEvent, true);
             }
         }
-    }, [handleCloseOnEvent, showCart, showForm]);
+    }, [handleCloseOnEvent, notification.show, showCart, showForm]);
     // Close checkout and reset cart
     React.useEffect(() => {
         if (sucessfulOrder) {
@@ -72,7 +73,7 @@ const CartTable = () => {
         const removeDuplicates = updatedSizes.filter((obj, index, items) => items.findIndex((item) => (item.id === obj.id)) === index);
         // Store sizes
         setSelectedSize(removeDuplicates);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [cart]); // Do not listen selectedSize to prevent an infinite loop
     // Update selected sizes
     React.useEffect(() => {
@@ -115,7 +116,7 @@ const CartTable = () => {
                                 </div>
                             </div>
                             <div className='flex items-center justify-center text-center w-1/2 mb-[5%] scale-[0.7] xs:scale-100'>
-                                <div className='mt-4 flex flex-col items-center justify-between'>
+                                <div className='flex flex-col items-center justify-between mt-4'>
                                     <Link to={`/product/${item.id}`} aria-label='item-id'>
                                         <h2 className='text-center text-2xl text-tomato-sauce capitalize p-[1%] whitespace-nowrap'>{item.brand}</h2>
                                         {getItemModel(item, { whiteSpace: 'wrap' })}
@@ -127,17 +128,18 @@ const CartTable = () => {
                                         <FormControl fullWidth>
                                             {Array.isArray(item.size) ?
                                                 <>
-                                                    <InputLabel htmlFor={item.id} variant='standard'>Size</InputLabel>
+                                                    <InputLabel htmlFor={item.id} variant='standard'>Talla (EU)</InputLabel>
                                                     <NativeSelect
                                                         defaultValue={selectedSize[index]?.size}
                                                         inputProps={{ id: item.id, name: 'size' }}
                                                         onChange={(event) => handleOnChange(event, item.id)}
+                                                        sx={{ backgroundColor: blue[50], color: blue[900], fontWeight: '500' }}
                                                     >
                                                         {item.size.map((size, i) => <option key={i} value={size}>{size}</option>)}
                                                     </NativeSelect>
                                                 </>
                                                 :
-                                                <p className='text-2sm first-letter:uppercase'>{item.size}</p>}
+                                                <p className='text-base text-roman-silver font-semibold first-letter:uppercase'>{item.size}</p>}
                                         </FormControl>
                                     </Box>
                                     <Spacer value={1.5} />

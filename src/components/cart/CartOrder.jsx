@@ -7,7 +7,7 @@ const CartOrder = () => {
     // States
     const [hover, setHover] = React.useState({});
     // Context
-    const { handleClearCart, showForm, toggleCartForm } = React.useContext(CartContext);
+    const { handleResetCart, handleUpdateCart, handleNotification, showForm, toggleCartForm } = React.useContext(CartContext);
     // Reset button hover event
     React.useEffect(() => {
         if (showForm) setHover({ continue: false });
@@ -37,7 +37,7 @@ const CartOrder = () => {
                         title='Continuar compra'
                     />
                     <Button
-                        onClick={handleClearCart}
+                        onClick={() => handleNotification({ accept: handleResetCart, decline: handleUpdateCart, declinable: true, show: true }, '¿Deseas vaciar tu carrito?')}
                         onMouseEnter={() => setHover({ empty: true })}
                         onMouseLeave={() => setHover({ empty: false })}
                         style={{

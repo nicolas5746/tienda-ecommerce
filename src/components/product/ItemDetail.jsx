@@ -8,7 +8,7 @@ import Spacer from '@ui/Spacer';
 const ItemDetail = () => {
     // Context
     const { handleAddToCart } = React.useContext(CartContext);
-    const { items, getItemCategory, getItemColour, getItemModel } = React.useContext(ItemContext);
+    const { items, getItemCategory, getItemColour, getItemModel, getItemSizes } = React.useContext(ItemContext);
     // Dynamic parameter
     const { id } = useParams();
 
@@ -22,11 +22,14 @@ const ItemDetail = () => {
                         {getItemModel(item, { whiteSpace: 'nowrap' })}
                         <Spacer value={1} />
                         {getItemCategory(item)}
+                        <Spacer value={2} />
                         {item.stock >= 1 ?
                             <>
+                                <p className='text-center text-roman-silver text-3sm first-letter:uppercase font-semibold'>hay stock disponible!</p>
+                                <Spacer value={2} />
                                 {getItemColour(item)}
                                 <Spacer value={1} />
-                                <p className='text-center text-roman-silver text-3sm first-letter:uppercase font-semibold'>hay stock disponible!</p>
+                                {getItemSizes(item)}
                             </>
                             :
                             <p className='text-center text-2sm text-tomato-sauce font-semibold uppercase m-[5%] p-[1%] whitespace-normal'>lo sentimos, no hay stock disponible!</p>

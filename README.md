@@ -1,6 +1,6 @@
-# Tienda Americana - React
+# Tienda Americana - React - Firebase - Tailwind
 
-![Tienda Americana](https://i.postimg.cc/SRfcTHdz/demo.png)
+![Tienda Americana](https://res.cloudinary.com/dmnyy2q99/image/upload/v1730596589/demo_g0qzsa.gif)
 
 ## Demo
 

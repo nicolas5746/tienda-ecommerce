@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 
 export const FormInputs = ({ emailValue, firstNameValue, lastNameValue, onChange, phoneValue }) => {
 
-    const formClass = 'relative text-left text-squid-ink w-full mb-[5%] p-[2%] focus:placeholder:bg-azure focus:placeholder:text-transparent focus:placeholder:-m-[5%] focus:placeholder:p-[5%] rounded-lg border border-solid border-tomato-sauce'
+    const formClass = 'relative text-left text-squid-ink w-full mb-[5%] p-[2%] focus:placeholder:bg-azure focus:placeholder:text-transparent focus:placeholder:-m-[5%] focus:placeholder:p-[5%] rounded-lg border border-solid border-tomato-sauce';
 
     return (
         <div className='inputs'>

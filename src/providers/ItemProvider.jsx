@@ -1,10 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import * as firestore from 'firebase/firestore';
+import Box from '@mui/material/Box';
+import { blue } from '@mui/material/colors';
 import { FirebaseError } from '@firebase/util';
 import { Link } from 'react-router-dom';
 import { ItemContext } from '@/contexts/Contexts';
 import { database } from '@/lib/firebase/config';
+import Spacer from '@ui/Spacer';
 
 const ItemProvider = ({ children }) => {
     // States
@@ -63,13 +66,61 @@ const ItemProvider = ({ children }) => {
             <p className='text-center text-base text-windows-blue font-semibold capitalize p-[1%]' style={style}>{item.model}</p>
         );
     }
+    // Get item sizes
+    const getItemSizes = (item) => {
+
+        return (
+            <>
+                {Array.isArray(item.size) && item.size.filter((i) => typeof i === 'number') &&
+                    <>
+                        <p className='text-2sm text-roman-silver font-semibold first-letter:uppercase'>tallas disponibles (EU):</p>
+                        <Spacer value={2} />
+                    </>}
+                <div className={`${Array.isArray(item.size) ? `grid ${item.size.length === 2 ? 'grid-cols-2' : item.size.length === 3 ? 'grid-cols-3' : 'grid-cols-4'} gap-2` : `flex`} items-center justify-center`}>
+                    {Array.isArray(item.size) ?
+                        item.size.map((size, index) => (
+                            <Box
+                                key={index}
+                                sx={{
+                                    bgcolor: '#dcdcdc',
+                                    border: `0.1em solid ${blue[600]}`,
+                                    borderRadius: 1,
+                                    color: blue[600],
+                                    fontWeight: '500',
+                                    height: 25,
+                                    textAlign: 'center',
+                                    width: 25,
+                                    '&:hover': { bgcolor: blue[600], color: '#dcdcdc', cursor: 'default', transform: 'scale(1.2)' }
+                                }}
+                            >{size}</Box>))
+                        :
+                        (typeof item.size === 'number') ?
+                            <Box
+                                sx={{
+                                    bgcolor: '#dcdcdc',
+                                    border: `0.1em solid ${blue[600]}`,
+                                    borderRadius: 1,
+                                    color: blue[600],
+                                    fontWeight: '500',
+                                    height: 25,
+                                    textAlign: 'center',
+                                    width: 25,
+                                    '&:hover': { bgcolor: blue[600], color: '#dcdcdc', cursor: 'default', transform: 'scale(1.2)' }
+                                }}
+                            >{item.size}</Box>
+                            :
+                            <p className='text-base text-steelblue font-semibold first-letter:uppercase'>{item.size}</p>}
+                </div>
+            </>
+        );
+    }
     // Update items
     React.useEffect(() => {
         getItems();
     }, []);
 
     return (
-        <ItemContext.Provider value={{ items, getItems, getItemCategory, getItemColour, getItemModel, getItemImage }}>
+        <ItemContext.Provider value={{ items, getItems, getItemCategory, getItemColour, getItemImage, getItemModel, getItemSizes }}>
             {children}
         </ItemContext.Provider>
     );

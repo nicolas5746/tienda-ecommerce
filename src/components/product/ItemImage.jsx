@@ -6,7 +6,7 @@ import { RemoveItemIcon } from '@ui/Icons';
 
 const ItemImage = ({ item, linkStyle, optionalText }) => {
     // Context
-    const { handleIsInCart, handleRemoveFromCart } = React.useContext(CartContext);
+    const { handleIsInCart, handleRemoveFromCart, handleNotification } = React.useContext(CartContext);
     const { getItemImage } = React.useContext(ItemContext);
 
     return (
@@ -22,7 +22,7 @@ const ItemImage = ({ item, linkStyle, optionalText }) => {
                     <RemoveItemIcon
                         color='disabled'
                         fontSize='small'
-                        onClick={() => handleRemoveFromCart(item.id)}
+                        onClick={() => handleNotification({ accept: () => handleRemoveFromCart(item.id, false), decline: () => handleRemoveFromCart(item.id, true), declinable: true, show: true }, '¿Deseas eliminar éste producto de tu carrito?')}
                         style={{ cursor: 'pointer', left: '2%', position: 'absolute', top: '2%' }}
                         title='Eliminar'
                     />}

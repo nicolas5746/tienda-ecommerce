@@ -21,8 +21,8 @@ const ItemList = ({ items }) => {
             <h1 className='greeting text-center text-base 3md:text-5lg font-semibold font-poppins p-[1%] rounded-lg bg-gradient-to-r from-ferrari via-royal-blue to-crimson text-transparent bg-clip-text bg-200% animate-greet'>
                 Las mejores marcas al mejor precio
             </h1>
-            <SearchInput className='search flex flex-row items-center justify-center p-[1%]' label='Buscar' name='filter' onChange={handleOnChange} placeholder='Ingresar marca o modelo' type='text' value={filter} />
-            <div className='mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4  bg-gainsboro p-[3%] gap-y-10 gap-x-6 xl:gap-x-8'>
+            <SearchInput className='flex flex-row items-center justify-center p-[1%]' label='Buscar' name='filter' onChange={handleOnChange} placeholder='Ingresar marca o modelo' type='text' value={filter} />
+            <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 bg-gainsboro p-[3%] gap-y-10 gap-x-6 xl:gap-x-8 mt-6'>
                 {category ?
                     items.filter((item) => item.category === category).filter(filtered).map((item) => <Item item={item} key={item.id} />)
                     :

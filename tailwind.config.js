@@ -36,6 +36,7 @@ export default {
         'steelblue': '#4682b4',
         'tomato-sauce': '#b21807',
         'transparent-black': '#030303d2',
+        'transparent-darkest': '#030303f9',
         'transparent-grey': '#4a4a4acc',
         'transparent-dark-grey': '#0f171e80',
         'windows-blue': '#357ec7'

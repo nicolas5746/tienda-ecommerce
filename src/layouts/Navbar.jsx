@@ -1,6 +1,6 @@
 /* eslint-disable no-constant-condition */
 import { Link } from 'react-router-dom';
-import { Disclosure, Menu } from '@headlessui/react';
+import { Disclosure, DisclosureButton, DisclosurePanel, Menu } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { scrollToTop } from '@/utils/utils';
 import Widget from './Widget';
@@ -22,22 +22,22 @@ const Navbar = () => {
     return (
         <header className='fixed left-0 right-0 top-0' style={{ zIndex: '1' }}>
             <Disclosure as='nav' className='bg-gray-800 rounded-b-xl 4md:rounded-b-3xl'>
-                {({ open }) => (
+                {({ open, close }) => (
                     <>
                         <div className='mx-auto max-w-7xl px-2 sm:px-6 lg:px-8'>
                             <div className='relative flex h-16 items-center justify-between'>
                                 <div className='absolute inset-y-0 left-0 flex items-center sm:hidden'>
-                                    <Disclosure.Button
+                                    <DisclosureButton
                                         className='inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white'
                                         aria-label='open'
                                     >
                                         {open ? <XMarkIcon className='block h-6 w-6' aria-hidden='true' /> : <Bars3Icon className='block h-6 w-6' aria-hidden='true' />}
-                                    </Disclosure.Button>
+                                    </DisclosureButton>
                                 </div>
                                 <img className='hidden lg:block w-[5%] mr-[2%]' alt='Tienda Americana' src='https://res.cloudinary.com/dmnyy2q99/image/upload/v1729533634/title_cprjlh.png' title='Tienda Americana' />
                                 <div className='flex flex-1 items-center justify-center sm:items-stretch sm:justify-start' onClick={() => scrollToTop()}>
                                     <Link to='/' className='flex flex-shrink-0 items-center text-base text-roman-silver hover:text-gainsboro roboto hover:scale-105' aria-label='home' title='Tienda Americana'>
-                                        <h1 className='page-title text-center align-middle text-sm 4md:text-3sm lg:text-5lg text-crimson hover:text-windows-blue font-normal hover:font-extrabold font-bungee-inline'>Tienda Americana</h1>
+                                        <h1 className='text-center align-middle text-sm 4md:text-3sm lg:text-5lg text-crimson hover:text-windows-blue font-normal hover:font-extrabold font-bungee-inline'>Tienda Americana</h1>
                                     </Link>
                                     <div className='hidden sm:ml-10 sm:block'>
                                         <div className='flex space-x-4 capitalize'>
@@ -67,9 +67,9 @@ const Navbar = () => {
                                 </div>
                             </div>
                         </div>
-                        <Disclosure.Panel className='sm:hidden'>
+                        <DisclosurePanel className='sm:hidden'>
                             <div className='space-y-1 capitalize px-2 pt-2 pb-3'>
-                                <Link to='/' aria-label='home'>
+                                <Link to='/' aria-label='home' onClick={close}>
                                     <div
                                         className={classNames(false ? 'bg-gray-900 text-white' : 'text-center text-gray-300 hover:bg-gray-700 hover:text-white', 'block px-3 py-2 rounded-md text-base font-medium')}
                                         title='Inicio'
@@ -84,12 +84,13 @@ const Navbar = () => {
                                         aria-current={false ? 'page' : undefined}
                                         aria-label='category'
                                         key={index}
+                                        onClick={close}
                                         title={item.category.toString().charAt(0).toUpperCase() + item.category.toString().slice(1)}
                                     >
                                         {item.category.toString().charAt(0).toUpperCase() + item.category.toString().slice(1)}
                                     </Link>))}
                             </div>
-                        </Disclosure.Panel>
+                        </DisclosurePanel>
                     </>)}
             </Disclosure>
         </header>
