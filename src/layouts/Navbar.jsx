@@ -1,11 +1,15 @@
-/* eslint-disable no-constant-condition */
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { Disclosure, DisclosureButton, DisclosurePanel, Menu } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-import { scrollToTop } from '@/utils/utils';
+import { closeOnEvent, isInView, scrollToTop } from '@/utils/utils';
 import Widget from './Widget';
 
 const Navbar = () => {
+    // Reference value
+    const buttonRef = React.useRef(null);
+    const navbarRef = React.useRef(null);
+    const xMarkRef = React.useRef(null);
 
     const classNames = (...classes) => {
         return classes.filter(Boolean).join(' ');
@@ -18,10 +22,28 @@ const Navbar = () => {
         { category: 'niños' },
         { category: 'accesorios' }
     ];
+    // Close navbar and scroll instantly to top
+    const onClickCloseNavbar = (close) => {
+        window.scrollTo(0, 0);
+        close();
+    }
+    // Close navbar when clicking on background or pressing down 'Esc' key
+    const handleCloseOnEvent = React.useCallback((event) => {
+        closeOnEvent(event, true, navbarRef, () => isInView(xMarkRef, () => buttonRef.current?.click()))
+    }, []);
+    // Apply events to close navbar
+    React.useEffect(() => {
+        document.addEventListener('click', handleCloseOnEvent, true);
+        document.addEventListener('keydown', handleCloseOnEvent, true);
+        return () => {
+            document.removeEventListener('click', handleCloseOnEvent, true);
+            document.removeEventListener('keydown', handleCloseOnEvent, true);
+        }
+    }, [handleCloseOnEvent]);
 
     return (
         <header className='fixed left-0 right-0 top-0' style={{ zIndex: '1' }}>
-            <Disclosure as='nav' className='bg-gray-800 rounded-b-xl 4md:rounded-b-3xl'>
+            <Disclosure as='nav' className='bg-gray-800 rounded-b-xl 4md:rounded-b-3xl' ref={navbarRef}>
                 {({ open, close }) => (
                     <>
                         <div className='mx-auto max-w-7xl px-2 sm:px-6 lg:px-8'>
@@ -30,8 +52,9 @@ const Navbar = () => {
                                     <DisclosureButton
                                         className='inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white'
                                         aria-label='open'
+                                        ref={buttonRef}
                                     >
-                                        {open ? <XMarkIcon className='block h-6 w-6' aria-hidden='true' /> : <Bars3Icon className='block h-6 w-6' aria-hidden='true' />}
+                                        {open ? <div ref={xMarkRef}><XMarkIcon className='block h-6 w-6' aria-hidden='true' /></div> : <Bars3Icon className='block h-6 w-6' aria-hidden='true' />}
                                     </DisclosureButton>
                                 </div>
                                 <img className='hidden lg:block w-[5%] mr-[2%]' alt='Tienda Americana' src='https://res.cloudinary.com/dmnyy2q99/image/upload/v1729533634/title_cprjlh.png' title='Tienda Americana' />
@@ -42,15 +65,15 @@ const Navbar = () => {
                                     <div className='hidden sm:ml-10 sm:block'>
                                         <div className='flex space-x-4 capitalize'>
                                             <Link to='/' aria-label='home' title='Inicio'>
-                                                <div className={classNames(false ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-red-700 hover:text-white', 'px-3 py-2 rounded-md text-base font-medium')}>
+                                                <div className={classNames(classNames ? 'text-gray-300 hover:bg-red-700 hover:text-white' : 'bg-gray-900 text-white', 'px-3 py-2 rounded-md text-base font-medium')}>
                                                     Inicio
                                                 </div>
                                             </Link>
                                             {categories.map((item, index) => (
                                                 <Link
                                                     to={`/category/${item.category}`}
-                                                    className={classNames(false ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-red-700 hover:text-white', 'px-3 py-2 rounded-md text-base font-medium')}
-                                                    aria-current={false ? 'page' : undefined}
+                                                    className={classNames(classNames ? 'text-gray-300 hover:bg-red-700 hover:text-white' : 'bg-gray-900 text-white', 'px-3 py-2 rounded-md text-base font-medium')}
+                                                    aria-current={classNames ? undefined : 'page'}
                                                     aria-label='category'
                                                     key={index}
                                                     title={item.category.toString().charAt(0).toUpperCase() + item.category.toString().slice(1)}
@@ -69,9 +92,9 @@ const Navbar = () => {
                         </div>
                         <DisclosurePanel className='sm:hidden'>
                             <div className='space-y-1 capitalize px-2 pt-2 pb-3'>
-                                <Link to='/' aria-label='home' onClick={close}>
+                                <Link to='/' aria-label='home' onClick={() => onClickCloseNavbar(close)}>
                                     <div
-                                        className={classNames(false ? 'bg-gray-900 text-white' : 'text-center text-gray-300 hover:bg-gray-700 hover:text-white', 'block px-3 py-2 rounded-md text-base font-medium')}
+                                        className={classNames(classNames ? 'text-center text-gray-300 hover:bg-gray-700 hover:text-white' : 'bg-gray-900 text-white', 'block px-3 py-2 rounded-md text-base font-medium')}
                                         title='Inicio'
                                     >
                                         Inicio
@@ -80,11 +103,11 @@ const Navbar = () => {
                                 {categories.map((item, index) => (
                                     <Link
                                         to={`/category/${item.category}`}
-                                        className={classNames(false ? 'bg-gray-900 text-white' : 'text-center text-gray-300 hover:bg-gray-700 hover:text-white', 'block px-3 py-2 rounded-md text-base font-medium')}
-                                        aria-current={false ? 'page' : undefined}
+                                        className={classNames(classNames ? 'text-center text-gray-300 hover:bg-gray-700 hover:text-white' : 'bg-gray-900 text-white', 'block px-3 py-2 rounded-md text-base font-medium')}
+                                        aria-current={classNames ? undefined : 'page'}
                                         aria-label='category'
                                         key={index}
-                                        onClick={close}
+                                        onClick={() => onClickCloseNavbar(close)}
                                         title={item.category.toString().charAt(0).toUpperCase() + item.category.toString().slice(1)}
                                     >
                                         {item.category.toString().charAt(0).toUpperCase() + item.category.toString().slice(1)}
