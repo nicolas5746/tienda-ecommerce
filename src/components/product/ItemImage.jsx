@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { CartContext, ItemContext } from '@/contexts/Contexts';
 import { RemoveItemIcon } from '@ui/Icons';
+import { scrollToTop } from '@/utils/utils';
 
 const ItemImage = ({ item, linkStyle, optionalText }) => {
     // Context
@@ -12,7 +13,7 @@ const ItemImage = ({ item, linkStyle, optionalText }) => {
     return (
         <div className='relative min-h-100 text-gray-500 aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75 lg:aspect-none lg:h-80'>
             <>
-                <Link to={`/product/${item.id}`} aria-label='item-id' style={linkStyle}>
+                <Link to={`../product/${item.id}`} aria-label='item-id' onClick={scrollToTop} style={linkStyle}>
                     {getItemImage(item)}
                     <span className='absolute flex items-end justify-center text-center text-xs 2sm:text-2xs 3md:text-3xs xl:text-5xs text-roman-silver font-normal font-lato bottom-[18%] lg:bottom-[2%] w-full'>
                         {optionalText.charAt(0).toUpperCase() + optionalText.slice(1).toLowerCase()}

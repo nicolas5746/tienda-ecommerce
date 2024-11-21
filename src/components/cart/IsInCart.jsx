@@ -16,7 +16,7 @@ const IsInCart = ({ id, onClick }) => {
             {handleIsInCart(id) ?
                 <>
                     <CheckedIcon color='success' fontSize='medium' style={{ display: 'block', margin: '5% 0 0 35%' }} title='Agregado' />
-                    <Link to='/cart' aria-label='cart'>
+                    <Link to='../cart' aria-label='cart'>
                         <Button
                             style={{
                                 color: '#357ec7',

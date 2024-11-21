@@ -12,7 +12,7 @@ const Widget = () => {
 
     return (
         <div className='block bg-transparent p-[5%]' title='MI CARRITO'>
-            <Link to='/cart' aria-label='cart'>
+            <Link to='../cart' aria-label='cart'>
                 {cartSize < 1 ?
                     <CartIcon onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)} style={{ color: hover ? '#357ec7' : '#dcdcdc' }} />
                     :

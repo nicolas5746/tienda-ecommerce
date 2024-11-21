@@ -20,14 +20,16 @@ const Router = () => {
         <ItemProvider>
             <CartProvider>
                 <OrderProvider>
-                    <BrowserRouter>
+                    <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
                         <Navbar />
                         <Routes>
                             <Route path='/' element={<Home />} />
                             <Route path='/category/:category' element={<Home />} />
                             <Route path='/product/:id' element={<Product />} />
                             <Route path='/cart' element={<Cart />} />
-                            <Route path='/*' element={<NotFound />} />
+                            <Route path='/'>
+                                <Route path='*' element={<NotFound />} />
+                            </Route>
                         </Routes>
                         <Footer />
                     </BrowserRouter>

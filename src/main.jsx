@@ -6,6 +6,6 @@ import './styles.css';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <Router />
+    <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }} />
   </StrictMode>
 );

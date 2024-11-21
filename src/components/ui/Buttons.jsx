@@ -28,7 +28,7 @@ Button.propTypes = {
 export const HomeButton = ({ style, text, title }) => {
 
     return (
-        <Link to='/' aria-label='home'>
+        <Link to='../' aria-label='home'>
             <div
                 className='block text-center text-base text-windows-blue link:text-windows-blue visited:text-medium-blue hover:bg-dark-white hover:text-royal-blue
                             active:text-blue-whale first-letter:uppercase font-lato bg-gainsboro m-[0 auto] cursor-pointer border border-solid border-windows-blue'

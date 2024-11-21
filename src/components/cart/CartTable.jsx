@@ -117,7 +117,7 @@ const CartTable = () => {
                             </div>
                             <div className='flex items-center justify-center text-center w-1/2 mb-[5%] scale-[0.7] xs:scale-100'>
                                 <div className='flex flex-col items-center justify-between mt-4'>
-                                    <Link to={`/product/${item.id}`} aria-label='item-id'>
+                                    <Link to={`../product/${item.id}`} aria-label='item-id'>
                                         <h2 className='text-center text-2xl text-tomato-sauce capitalize p-[1%] whitespace-nowrap'>{item.brand}</h2>
                                         {getItemModel(item, { whiteSpace: 'wrap' })}
                                     </Link>

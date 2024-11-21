@@ -27,7 +27,7 @@ const Checkout = () => {
     // Close checkout
     const handleCloseCheckout = React.useCallback(() => {
         handleResetCart();
-        navigate('/');
+        navigate('../');
     }, [handleResetCart, navigate]);
     // Update items after purchase
     React.useEffect(() => {

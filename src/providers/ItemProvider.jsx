@@ -37,7 +37,7 @@ const ItemProvider = ({ children }) => {
 
         return (
             <p className='text-center text-roman-silver text-2sm first-letter:uppercase'>categoría:
-                <Link to={`/category/${item.category}`} aria-label='category'>
+                <Link to={`../category/${item.category}`} aria-label='category'>
                     <span className='text-center text-blood text-2sm capitalize whitespace-nowrap'>&nbsp;{item.category}</span>
                 </Link>
             </p>

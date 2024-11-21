@@ -59,19 +59,19 @@ const Navbar = () => {
                                 </div>
                                 <img className='hidden lg:block w-[5%] mr-[2%]' alt='Tienda Americana' src='https://res.cloudinary.com/dmnyy2q99/image/upload/v1729533634/title_cprjlh.png' title='Tienda Americana' />
                                 <div className='flex flex-1 items-center justify-center sm:items-stretch sm:justify-start' onClick={() => scrollToTop()}>
-                                    <Link to='/' className='flex flex-shrink-0 items-center text-base text-roman-silver hover:text-gainsboro roboto hover:scale-105' aria-label='home' title='Tienda Americana'>
+                                    <Link to='../' className='flex flex-shrink-0 items-center text-base text-roman-silver hover:text-gainsboro roboto hover:scale-105' aria-label='home' title='Tienda Americana'>
                                         <h1 className='text-center align-middle text-sm 4md:text-3sm lg:text-5lg text-crimson hover:text-windows-blue font-normal hover:font-extrabold font-bungee-inline'>Tienda Americana</h1>
                                     </Link>
                                     <div className='hidden sm:ml-10 sm:block'>
                                         <div className='flex space-x-4 capitalize'>
-                                            <Link to='/' aria-label='home' title='Inicio'>
+                                            <Link to='../' aria-label='home' title='Inicio'>
                                                 <div className={classNames(classNames ? 'text-gray-300 hover:bg-red-700 hover:text-white' : 'bg-gray-900 text-white', 'px-3 py-2 rounded-md text-base font-medium')}>
                                                     Inicio
                                                 </div>
                                             </Link>
                                             {categories.map((item, index) => (
                                                 <Link
-                                                    to={`/category/${item.category}`}
+                                                    to={`../category/${item.category}`}
                                                     className={classNames(classNames ? 'text-gray-300 hover:bg-red-700 hover:text-white' : 'bg-gray-900 text-white', 'px-3 py-2 rounded-md text-base font-medium')}
                                                     aria-current={classNames ? undefined : 'page'}
                                                     aria-label='category'
@@ -92,7 +92,7 @@ const Navbar = () => {
                         </div>
                         <DisclosurePanel className='sm:hidden'>
                             <div className='space-y-1 capitalize px-2 pt-2 pb-3'>
-                                <Link to='/' aria-label='home' onClick={() => onClickCloseNavbar(close)}>
+                                <Link to='../' aria-label='home' onClick={() => onClickCloseNavbar(close)}>
                                     <div
                                         className={classNames(classNames ? 'text-center text-gray-300 hover:bg-gray-700 hover:text-white' : 'bg-gray-900 text-white', 'block px-3 py-2 rounded-md text-base font-medium')}
                                         title='Inicio'
@@ -102,7 +102,7 @@ const Navbar = () => {
                                 </Link>
                                 {categories.map((item, index) => (
                                     <Link
-                                        to={`/category/${item.category}`}
+                                        to={`../category/${item.category}`}
                                         className={classNames(classNames ? 'text-center text-gray-300 hover:bg-gray-700 hover:text-white' : 'bg-gray-900 text-white', 'block px-3 py-2 rounded-md text-base font-medium')}
                                         aria-current={classNames ? undefined : 'page'}
                                         aria-label='category'

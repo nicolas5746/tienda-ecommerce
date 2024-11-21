@@ -28,7 +28,7 @@ const Cart = () => {
                             <AddToCartIcon badgeColor='error' cartColor='primary' iconButtonColor='primary' iconButtonStyle={{ pointerEvents: 'none' }} quantity={cartSize.toString()} />
                             <span className='first-letter:uppercase'>tu carrito está vacío!</span>
                         </div>
-                        <Link className='flex items-center justify-center' to='/' aria-label='home'>
+                        <Link className='flex items-center justify-center' to='../' aria-label='home'>
                             <Button
                                 onMouseEnter={() => setHover(true)}
                                 onMouseLeave={() => setHover(false)}
